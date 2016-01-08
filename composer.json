@@ -1,0 +1,32 @@
+{
+    "name": "atoum/phpunit-extension",
+    "type": "library",
+    "description": "atoum PHPUnit extension - Run your PHPUnit tests with atoum",
+    "keywords": ["TDD","atoum","test","unit testing","PHPUnit"],
+    "homepage": "http://www.atoum.org",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "jubianchi",
+            "email": "contact@jubianchi.fr"
+        }
+    ],
+    "require": {
+        "atoum/atoum": "~2.5"
+
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "mageekguy\\atoum\\phpunit\\": "classes"
+        },
+        "files": ["autoloader.php"]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
+    }
+}
