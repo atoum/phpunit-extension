@@ -49,8 +49,8 @@ $extension->addToRunner($runner);
 | `assertClassHasAttribute`                                                                               | ✘         |
 | `assertArraySubset(array $subset, array $array[, bool $strict = '', string $message = ''])`             | ✔         |
 | `assertClassHasStaticAttribute`                                                                         | ✘         |
-| `assertContains(mixed $needle, Iterator|array $haystack[, string $message = ''])`                       | ✘         |
-| `assertContains(string $needle, string $haystack[, string $message = '', boolean $ignoreCase = FALSE])` | ✘         |
+| `assertContains(mixed $needle, Iterator|array $haystack[, string $message = ''])`                       | ✔         |
+| `assertContains(string $needle, string $haystack[, string $message = '', boolean $ignoreCase = FALSE])` | ✔         |
 | `assertContainsOnly`                                                                                    | ✘         |
 | `assertContainsOnlyInstancesOf`                                                                         | ✘         |
 | `assertCount`                                                                                           | ✘         |
