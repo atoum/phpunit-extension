@@ -26,7 +26,7 @@ class assertEquals extends atoum\asserters\variable
 			}
 			else
 			{
-				$this->integer($arguments[1])->isIdenticalTo($arguments[0], isset($arguments[2]) ? $arguments[2] : null);
+				$this->setWith($arguments[1])->isIdenticalTo($arguments[0], isset($arguments[2]) ? $arguments[2] : null);
 			}
 		}
 		else

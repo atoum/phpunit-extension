@@ -74,15 +74,8 @@ class assertEquals extends \PHPUnit_Framework_TestCase
 		}
 		catch (atoum\asserter\exception $exception)
 		{
-			$this->assertEquals($assert->getAnalyzer()->getTypeOf($actual) . ' is not an integer', $exception->getMessage());
+			$this->assertEquals($assert->getAnalyzer()->getTypeOf($actual) . ' is not identical to ' . $assert->getAnalyzer()->getTypeOf($expected) . PHP_EOL . $assert->getDiff()->setActual($actual)->setExpected($expected), $exception->getMessage());
 		}
-	}
-
-	public function testSetWithArgumentsActualZero()
-	{
-		$this->markTestSkipped('Waiting for atoum/atoum#553 to be resolved');
-
-		$assert = new testedClass();
 
 		try
 		{
@@ -92,7 +85,9 @@ class assertEquals extends \PHPUnit_Framework_TestCase
 		}
 		catch (atoum\asserter\exception $exception)
 		{
-			$this->assertEquals($assert->getAnalyzer()->getTypeOf($actual) . ' is not an integer', $exception->getMessage());
+			$this->assertEquals($assert->getAnalyzer()->getTypeOf($actual) . ' is not identical to ' . $assert->getAnalyzer()->getTypeOf($expected) . PHP_EOL . $assert->getDiff()->setActual($actual)->setExpected($expected), $exception->getMessage());
 		}
+
+		$this->assertSame($assert, $assert->setWithArguments(array(0, 0)));
 	}
 }
