@@ -12,16 +12,13 @@
         }
     ],
     "require": {
-        "atoum/atoum": "~2.5"
+        "atoum/atoum": "dev-virtual-hooks"
 
     },
     "require-dev": {
         "phpunit/phpunit": "@stable"
     },
     "autoload": {
-        "psr-4": {
-            "mageekguy\\atoum\\phpunit\\": "classes"
-        },
         "files": ["autoloader.php"]
     },
     "extra": {

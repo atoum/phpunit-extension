@@ -11,7 +11,7 @@ class assertInstanceOf extends \PHPUnit_Framework_TestCase
 {
 	public function testClass()
 	{
-		$this->assertInstanceOf('mageekguy\atoum\asserter', new testedClass());
+		$this->assertInstanceOf('mageekguy\atoum\asserters\object', new testedClass());
 	}
 
 	public function testSetWithArguments()

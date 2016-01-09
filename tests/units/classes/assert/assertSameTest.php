@@ -11,7 +11,7 @@ class assertSame extends \PHPUnit_Framework_TestCase
 {
 	public function testClass()
 	{
-		$this->assertInstanceOf('mageekguy\atoum\asserter', new testedClass());
+		$this->assertInstanceOf('mageekguy\atoum\asserters\variable', new testedClass());
 	}
 
 	public function testSetWithArguments()
