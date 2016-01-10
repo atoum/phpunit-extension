@@ -54,7 +54,7 @@ $extension->addToRunner($runner);
 | `assertContainsOnly(string $type, Iterator|array $haystack[, boolean $isNativeType = NULL, string $message = ''])` | ✔         |
 | `assertContainsOnlyInstancesOf(string $classname, Traversable|array $haystack[, string $message = ''])`            | ✔         |
 | `assertCount($expectedCount, $haystack[, string $message = ''])`                                                   | ✔         |
-| `assertEmpty`                                                                                                      | ✘         |
+| `assertEmpty(mixed $actual[, string $message = ''])`                                                               | ✔         |
 | `assertEqualXMLStructure`                                                                                          | ✘         |
 | `assertEquals(mixed $expected, mixed $actual[, string $message = ''])`                                             | ✔         |
 | `assertEquals(float $expected, float $actual[, string $message = '', float $delta = 0])`                           | ✔         |
