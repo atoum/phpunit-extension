@@ -14,7 +14,8 @@ if ($isPhpUnit === false)
 {
 	$aliases = array(
 		'PHPUnit_Framework_TestCase' => 'mageekguy\\atoum\\phpunit\\test',
-		'PHPUnit_Framework_AssertionFailedError' => 'mageekguy\\atoum\\asserter\\exception'
+		'PHPUnit_Framework_AssertionFailedError' => 'mageekguy\\atoum\\asserter\\exception',
+		'PHPUnit_Framework_Exception' => 'mageekguy\\atoum\\exceptions\\runtime'
 	);
 
 	foreach ($aliases as $phpunitClass => $atoumClass)
