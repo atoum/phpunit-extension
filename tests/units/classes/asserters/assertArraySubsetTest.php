@@ -1,10 +1,10 @@
 <?php
 
-namespace mageekguy\atoum\phpunit\tests\units\assert;
+namespace mageekguy\atoum\phpunit\tests\units\asserters;
 
 use
 	mageekguy\atoum,
-	mageekguy\atoum\phpunit\assert\assertArraySubset as testedClass
+	mageekguy\atoum\phpunit\asserters\assertArraySubset as testedClass
 ;
 
 class assertArraySubset extends \PHPUnit_Framework_TestCase
@@ -26,7 +26,7 @@ class assertArraySubset extends \PHPUnit_Framework_TestCase
 		}
 		catch (atoum\exceptions\runtime $exception)
 		{
-			$this->assertEquals('Missing argument #1 (subset) of mageekguy\\atoum\\phpunit\\assert\\assertArraySubset', $exception->getMessage());
+			$this->assertEquals('Missing argument #1 (subset) of mageekguy\\atoum\\phpunit\\asserters\\assertArraySubset', $exception->getMessage());
 		}
 
 		try
@@ -37,7 +37,7 @@ class assertArraySubset extends \PHPUnit_Framework_TestCase
 		}
 		catch (atoum\exceptions\runtime $exception)
 		{
-			$this->assertEquals('Missing argument #2 (array) of mageekguy\\atoum\\phpunit\\assert\\assertArraySubset', $exception->getMessage());
+			$this->assertEquals('Missing argument #2 (array) of mageekguy\\atoum\\phpunit\\asserters\\assertArraySubset', $exception->getMessage());
 		}
 
 		try
@@ -48,7 +48,7 @@ class assertArraySubset extends \PHPUnit_Framework_TestCase
 		}
 		catch (atoum\exceptions\runtime $exception)
 		{
-			$this->assertEquals('Argument #1 (subset) of mageekguy\\atoum\\phpunit\\assert\\assertArraySubset must be an array', $exception->getMessage());
+			$this->assertEquals('Argument #1 (subset) of mageekguy\\atoum\\phpunit\\asserters\\assertArraySubset must be an array', $exception->getMessage());
 		}
 
 		try

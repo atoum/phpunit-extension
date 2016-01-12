@@ -1,10 +1,10 @@
 <?php
 
-namespace mageekguy\atoum\phpunit\tests\units\assert;
+namespace mageekguy\atoum\phpunit\tests\units\asserters;
 
 use
 	mageekguy\atoum,
-	mageekguy\atoum\phpunit\assert\assertContainsOnlyInstancesOf as testedClass
+	mageekguy\atoum\phpunit\asserters\assertContainsOnlyInstancesOf as testedClass
 ;
 
 class assertContainsOnlyInstancesOf extends \PHPUnit_Framework_TestCase
@@ -26,7 +26,7 @@ class assertContainsOnlyInstancesOf extends \PHPUnit_Framework_TestCase
 		}
 		catch (atoum\exceptions\runtime $exception)
 		{
-			$this->assertEquals('Missing argument #1 (type) of mageekguy\\atoum\\phpunit\\assert\\assertContainsOnlyInstancesOf', $exception->getMessage());
+			$this->assertEquals('Missing argument #1 (type) of mageekguy\\atoum\\phpunit\\asserters\\assertContainsOnlyInstancesOf', $exception->getMessage());
 		}
 
 		try
@@ -37,7 +37,7 @@ class assertContainsOnlyInstancesOf extends \PHPUnit_Framework_TestCase
 		}
 		catch (atoum\exceptions\runtime $exception)
 		{
-			$this->assertEquals('Missing argument #2 (haystack) of mageekguy\\atoum\\phpunit\\assert\\assertContainsOnlyInstancesOf', $exception->getMessage());
+			$this->assertEquals('Missing argument #2 (haystack) of mageekguy\\atoum\\phpunit\\asserters\\assertContainsOnlyInstancesOf', $exception->getMessage());
 		}
 
 		try
@@ -48,7 +48,7 @@ class assertContainsOnlyInstancesOf extends \PHPUnit_Framework_TestCase
 		}
 		catch (atoum\exceptions\runtime $exception)
 		{
-			$this->assertEquals('Argument #1 (type) of mageekguy\\atoum\\phpunit\\assert\\assertContainsOnlyInstancesOf must be a string', $exception->getMessage());
+			$this->assertEquals('Argument #1 (type) of mageekguy\\atoum\\phpunit\\asserters\\assertContainsOnlyInstancesOf must be a string', $exception->getMessage());
 		}
 
 		try

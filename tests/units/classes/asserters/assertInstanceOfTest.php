@@ -1,10 +1,10 @@
 <?php
 
-namespace mageekguy\atoum\phpunit\tests\units\assert;
+namespace mageekguy\atoum\phpunit\tests\units\asserters;
 
 use
 	mageekguy\atoum,
-	mageekguy\atoum\phpunit\assert\assertInstanceOf as testedClass
+	mageekguy\atoum\phpunit\asserters\assertInstanceOf as testedClass
 ;
 
 class assertInstanceOf extends \PHPUnit_Framework_TestCase
@@ -26,7 +26,7 @@ class assertInstanceOf extends \PHPUnit_Framework_TestCase
 		}
 		catch (atoum\exceptions\runtime $exception)
 		{
-			$this->assertEquals('Missing argument #1 (expected) of mageekguy\\atoum\\phpunit\\assert\\assertInstanceOf', $exception->getMessage());
+			$this->assertEquals('Missing argument #1 (expected) of mageekguy\\atoum\\phpunit\\asserters\\assertInstanceOf', $exception->getMessage());
 		}
 
 		try
@@ -37,7 +37,7 @@ class assertInstanceOf extends \PHPUnit_Framework_TestCase
 		}
 		catch (atoum\exceptions\runtime $exception)
 		{
-			$this->assertEquals('Missing argument #2 (actual) of mageekguy\\atoum\\phpunit\\assert\\assertInstanceOf', $exception->getMessage());
+			$this->assertEquals('Missing argument #2 (actual) of mageekguy\\atoum\\phpunit\\asserters\\assertInstanceOf', $exception->getMessage());
 		}
 
 		try

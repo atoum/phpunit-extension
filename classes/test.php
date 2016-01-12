@@ -3,6 +3,7 @@
 namespace mageekguy\atoum\phpunit;
 
 use mageekguy\atoum;
+use mageekguy\atoum\test;
 use mageekguy\atoum\adapter;
 use mageekguy\atoum\annotations;
 use mageekguy\atoum\asserter;
@@ -10,8 +11,6 @@ use mageekguy\atoum\tools\variable\analyzer;
 
 abstract class test extends atoum\test
 {
-	//const defaultNamespace = '#(?:^|\\\)(?:Tests?\\\)?#i';
-	//const defaultTestedClass = '#Test$#';
 	const defaultEngine = 'inline';
 
 	public function __construct(adapter $adapter = null, annotations\extractor $annotationExtractor = null, asserter\generator $asserterGenerator = null, \mageekguy\atoum\test\assertion\manager $assertionManager = null, \closure $reflectionClassFactory = null, \closure $phpExtensionFactory = null, analyzer $analyzer = null)
@@ -28,10 +27,52 @@ abstract class test extends atoum\test
 		$generator = $generator ?: new atoum\test\asserter\generator($this);
 
 		$generator
-			->addNamespace(__NAMESPACE__ . '\\assert')
+			->addNamespace(__NAMESPACE__ . '\\asserters')
 		;
 
 		return parent::setAsserterGenerator($generator);
+	}
+
+	public function setAssertionManager(test\assertion\manager $assertionManager = null)
+	{
+		parent::setAssertionManager($assertionManager);
+
+		$test = $this;
+
+		$this->getAssertionManager()
+			->setHandler('assertArrayHasKey', function($expected, $actual, $failMessage = null) use ($test) {
+					$test->assertThat($actual, new atoum\phpunit\constraints\arrayHasKey($expected, $failMessage));
+
+					return $test;
+				}
+			)
+			->setHandler('assertCount', function($expected, $actual, $failMessage = null) use ($test) {
+					$test->assertThat($actual, new atoum\phpunit\constraints\count($expected, $failMessage));
+
+					return $test;
+				}
+			)
+			->setHandler('assertEmpty', function($actual, $failMessage = null) use ($test) {
+					$test->assertThat($actual, new atoum\phpunit\constraints\isEmpty($failMessage));
+
+					return $test;
+				}
+			)
+			->setHandler('assertEquals', function($expected, $actual, $failMessage = null, $delta = null, $maxDepth = null, $canonicalize = null, $ignoreCase = null) use ($test) {
+					$test->assertThat($actual, new atoum\phpunit\constraints\equals($expected, $failMessage, $delta, $maxDepth, $canonicalize, $ignoreCase));
+
+					return $test;
+				}
+			)
+			->setHandler('assertSame', function($expected, $actual, $failMessage = null) use ($test) {
+					$test->assertThat($actual, new atoum\phpunit\constraints\same($expected, $failMessage));
+
+					return $test;
+				}
+			)
+		;
+
+		return $this;
 	}
 
 	public function markTestSkipped($message = null)

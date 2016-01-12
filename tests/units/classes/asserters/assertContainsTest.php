@@ -1,10 +1,10 @@
 <?php
 
-namespace mageekguy\atoum\phpunit\tests\units\assert;
+namespace mageekguy\atoum\phpunit\tests\units\asserters;
 
 use
 	mageekguy\atoum,
-	mageekguy\atoum\phpunit\assert\assertContains as testedClass
+	mageekguy\atoum\phpunit\asserters\assertContains as testedClass
 ;
 
 class assertContains extends \PHPUnit_Framework_TestCase
@@ -26,7 +26,7 @@ class assertContains extends \PHPUnit_Framework_TestCase
 		}
 		catch (atoum\exceptions\runtime $exception)
 		{
-			$this->assertEquals('Missing argument #1 (needle) of mageekguy\\atoum\\phpunit\\assert\\assertContains', $exception->getMessage());
+			$this->assertEquals('Missing argument #1 (needle) of mageekguy\\atoum\\phpunit\\asserters\\assertContains', $exception->getMessage());
 		}
 
 		try
@@ -37,7 +37,7 @@ class assertContains extends \PHPUnit_Framework_TestCase
 		}
 		catch (atoum\exceptions\runtime $exception)
 		{
-			$this->assertEquals('Missing argument #2 (haystack) of mageekguy\\atoum\\phpunit\\assert\\assertContains', $exception->getMessage());
+			$this->assertEquals('Missing argument #2 (haystack) of mageekguy\\atoum\\phpunit\\asserters\\assertContains', $exception->getMessage());
 		}
 
 		try

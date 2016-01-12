@@ -1,10 +1,10 @@
 <?php
 
-namespace mageekguy\atoum\phpunit\assert;
+namespace mageekguy\atoum\phpunit\asserters;
 
 use mageekguy\atoum;
 
-class assertSame extends atoum\asserters\variable
+class assertInstanceOf extends atoum\asserters\object
 {
 	public function setWithArguments(array $arguments)
 	{
@@ -18,7 +18,7 @@ class assertSame extends atoum\asserters\variable
 			throw new atoum\exceptions\runtime('Missing argument #2 (actual) of ' . __CLASS__);
 		}
 
-		$this->setWith($arguments[1])->isIdenticalTo($arguments[0], isset($arguments[2]) ? $arguments[2] : null);
+		$this->setWith($arguments[1])->isInstanceOf($arguments[0], isset($arguments[2]) ? $arguments[2] : null);
 
 		return $this;
 	}
