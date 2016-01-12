@@ -44,15 +44,8 @@ class count extends \PHPUnit_Framework_TestCase
 		}
 		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
 		{
-			ob_start();
-			var_dump(2);
-			$expected = ob_get_clean();
-
-			ob_start();
-			var_dump(3);
-			$actual = ob_get_clean();
-
-			$diff = new atoum\tools\diff($expected, $actual);
+			$analyzer = new atoum\tools\variable\analyzer();
+			$diff = new atoum\tools\diff($analyzer->dump(2), $analyzer->dump(3));
 			$this->assertEquals('integer(3) is not equal to integer(2)' . PHP_EOL . $diff, $exception->getMessage());
 		}
 	}
