@@ -22,7 +22,7 @@ class arrayHasKey extends \PHPUnit_Framework_TestCase
 
 		try
 		{
-			$constraint->evaluate([]);
+			$constraint->evaluate(array());
 
 			$this->fail();
 		}
