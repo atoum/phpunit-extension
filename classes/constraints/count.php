@@ -28,42 +28,31 @@ class count extends constraint
             throw new \PHPUnit_Framework_Exception('Expected value of ' . __CLASS__ . ' must be an integer');
         }
 
-        try
+        switch (true)
         {
-            switch (true)
-            {
-                case $this->analyzer->isArray($actual):
-                    $asserter = new asserters\phpArray();
-                    $asserter->setWith($actual)->hasSize($this->expected);
-                    break;
+            case $this->analyzer->isArray($actual):
+                $asserter = new asserters\phpArray();
+                $asserter->setWith($actual)->hasSize($this->expected);
+                break;
 
-                case $actual instanceof \countable:
-                    $asserter = new asserters\sizeOf();
-                    $asserter->setWith($actual)->isEqualTo($this->expected);
-                    break;
+            case $actual instanceof \countable:
+                $asserter = new asserters\sizeOf();
+                $asserter->setWith($actual)->isEqualTo($this->expected);
+                break;
 
-                case $actual instanceof \iteratorAggregate:
-                    $asserter = new asserters\integer();
-                    $asserter->setWith(iterator_count($actual->getIterator()))->isEqualTo($this->expected);
-                    break;
+            case $actual instanceof \iteratorAggregate:
+                $asserter = new asserters\integer();
+                $asserter->setWith(iterator_count($actual->getIterator()))->isEqualTo($this->expected);
+                break;
 
-                case $actual instanceof \traversable:
-                case $actual instanceof \iterator:
-                    $asserter = new asserters\integer();
-                    $asserter->setWith(iterator_count($actual))->isEqualTo($this->expected);
-                    break;
+            case $actual instanceof \traversable:
+            case $actual instanceof \iterator:
+                $asserter = new asserters\integer();
+                $asserter->setWith(iterator_count($actual))->isEqualTo($this->expected);
+                break;
 
-                default:
-                    throw new \PHPUnit_Framework_Exception('Actual value of ' . __CLASS__ . ' must be an array, a countable object or a traversable object');
-            }
+            default:
+                throw new \PHPUnit_Framework_Exception('Actual value of ' . __CLASS__ . ' must be an array, a countable object or a traversable object');
         }
-        catch (exception $exception)
-        {
-            $this->description = $this->description ?: $exception->getMessage();
-
-            return false;
-        }
-
-        return true;
     }
 }

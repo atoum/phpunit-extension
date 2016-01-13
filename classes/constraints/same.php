@@ -20,18 +20,6 @@ class same extends constraint
     protected function matches($actual)
     {
         $asserter = new variable();
-
-        try
-        {
-            $asserter->setWith($actual)->isIdenticalTo($this->expected);
-        }
-        catch (exception $exception)
-        {
-            $this->description = $this->description ?: $exception->getMessage();
-
-            return false;
-        }
-
-        return true;
+        $asserter->setWith($actual)->isIdenticalTo($this->expected);
     }
 }

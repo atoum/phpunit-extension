@@ -34,33 +34,23 @@ class arrayHasKey extends constraint
             throw new \PHPUnit_Framework_Exception('Actual value of ' . __CLASS__ . ' must be an array or an arrayAccess instance');
         }
 
-        try
+        if ($this->analyzer->isArray($actual))
         {
-            if ($this->analyzer->isArray($actual))
+            $asserter = new phpArray();
+            $asserter->setWith($actual)->hasKey($this->expected);
+        }
+        else
+        {
+            $asserter = new boolean();
+
+            try
             {
-                $asserter = new phpArray();
-                $asserter->setWith($actual)->hasKey($this->expected);
+                $asserter->setWith(isset($actual[$this->expected]))->isTrue();
             }
-            else
+            catch (exception $exception)
             {
-                try
-                {
-                    $asserter = new boolean();
-                    $asserter->setWith(isset($actual[$this->expected]))->isTrue();
-                }
-                catch (exception $exception)
-                {
-                    throw new exception($asserter, $this->analyzer->getTypeOf($actual) . ' has no key ' . $this->analyzer->getTypeOf($this->expected));
-                }
+                throw new exception($asserter, $this->analyzer->getTypeOf($actual) . ' has no key ' . $this->analyzer->getTypeOf($this->expected));
             }
         }
-        catch (exception $exception)
-        {
-            $this->description = $this->description ?: $exception->getMessage();
-
-            return false;
-        }
-
-        return true;
     }
 }

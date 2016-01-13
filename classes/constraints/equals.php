@@ -35,64 +35,43 @@ class equals extends constraint
         {
             $asserter = new variable();
 
-            try
+            if ($this->analyzer->isString($actual) && $this->ignoreCase)
             {
-                if ($this->analyzer->isString($actual) && $this->ignoreCase)
-                {
-                    $actual = strtolower($actual);
-                }
-
-                if ($this->analyzer->isArray($actual) && $this->canonicalize)
-                {
-                    $actual = sort($actual);
-                }
-
-                $asserter->setWith($actual);
-
-                if (($actual === 0 && $this->expected == '') || ($actual == '' && $this->expected === 0))
-                {
-                    $asserter->isIdenticalTo($this->expected);
-                }
-                else
-                {
-                    $expected = $this->expected;
-
-                    if ($this->analyzer->isString($expected) && $this->ignoreCase)
-                    {
-                        $expected = strtolower($expected);
-                    }
-
-                    if ($this->analyzer->isArray($expected) && $this->canonicalize)
-                    {
-                        $expected = sort($expected);
-                    }
-
-                    $asserter->isEqualTo($expected);
-                }
+                $actual = strtolower($actual);
             }
-            catch (exception $exception)
-            {
-                $this->description = $this->description ?: $exception->getMessage();
 
-                return false;
+            if ($this->analyzer->isArray($actual) && $this->canonicalize)
+            {
+                $actual = sort($actual);
+            }
+
+            $asserter->setWith($actual);
+
+            if (($actual === 0 && $this->expected == '') || ($actual == '' && $this->expected === 0))
+            {
+                $asserter->isIdenticalTo($this->expected);
+            }
+            else
+            {
+                $expected = $this->expected;
+
+                if ($this->analyzer->isString($expected) && $this->ignoreCase)
+                {
+                    $expected = strtolower($expected);
+                }
+
+                if ($this->analyzer->isArray($expected) && $this->canonicalize)
+                {
+                    $expected = sort($expected);
+                }
+
+                $asserter->isEqualTo($expected);
             }
         }
         else
         {
             $asserter = new phpFloat();
-
-            try
-            {
-                $asserter->setWith((float) $actual)->isNearlyEqualTo((float) $this->expected, $this->delta);
-            }
-            catch (exception $exception)
-            {
-                $this->description = $this->description ?: $exception->getMessage();
-
-                return false;
-            }
+            $asserter->setWith((float) $actual)->isNearlyEqualTo((float) $this->expected, $this->delta);
         }
-
-        return true;
     }
 }

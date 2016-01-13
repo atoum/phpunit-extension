@@ -25,7 +25,7 @@ class isEmpty extends count
     {
         try
         {
-            return parent::matches($actual);
+            parent::matches($actual);
         }
         catch (exceptions\runtime $exception)
         {

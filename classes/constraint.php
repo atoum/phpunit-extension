@@ -2,8 +2,7 @@
 
 namespace mageekguy\atoum\phpunit;
 
-
-use mageekguy\atoum\exceptions;
+use mageekguy\atoum\asserter\exception;
 
 abstract class constraint
 {
@@ -11,7 +10,7 @@ abstract class constraint
 
     public function evaluate($actual, $description = null, $return = false)
     {
-        $result = $this->matches($actual);
+        $result = $this->doesMatch($actual);
 
         if ($return === true)
         {
@@ -38,5 +37,19 @@ abstract class constraint
         throw new \PHPUnit_Framework_ExpectationFailedException($message);
     }
 
+    private function doesMatch($actual)
+    {
+        try
+        {
+            $this->matches($actual);
+        }
+        catch (exception $exception)
+        {
+            $this->description = $this->description ?: $exception->getMessage();
 
+            return false;
+        }
+
+        return true;
+    }
 }

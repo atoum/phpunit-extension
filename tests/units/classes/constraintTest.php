@@ -2,20 +2,21 @@
 
 namespace mageekguy\atoum\phpunit
 {
+
+    use mageekguy\atoum\asserter\exception;
+    use mageekguy\atoum\asserters\variable;
+
     class failingConstraint extends constraint
     {
         protected function matches($actual)
         {
-            return false;
+            throw new exception(new variable(), uniqid());
         }
     }
 
     class passingConstraint extends constraint
     {
-        protected function matches($actual)
-        {
-            return true;
-        }
+        protected function matches($actual) { }
     }
 }
 
