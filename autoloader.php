@@ -14,6 +14,7 @@ if ($isPhpUnit === false)
 {
 	$aliases = array(
 		'PHPUnit_Framework_TestCase' => 'mageekguy\\atoum\\phpunit\\test',
+		'PHPUnit_Framework_Constraint' => 'mageekguy\\atoum\\phpunit\\constraint',
 		'PHPUnit_Framework_AssertionFailedError' => 'mageekguy\\atoum\\asserter\\exception',
 		'PHPUnit_Framework_Exception' => 'mageekguy\\atoum\\exceptions\\runtime',
 		'PHPUnit_Framework_ExpectationFailedException' => 'mageekguy\\atoum\\phpunit\\constraint\\exception',

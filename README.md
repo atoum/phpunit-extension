@@ -86,11 +86,18 @@ $extension->addToRunner($runner);
 | `assertStringEndsWith`                                                                                             | ✘         |
 | `assertStringEqualsFile`                                                                                           | ✘         |
 | `assertStringStartsWith`                                                                                           | ✘         |
-| `assertThat`                                                                                                       | ✘         |
+| `assertThat(mixed $value, PHPUnit_Framework_Constraint $constraint[, $message = ''])`                              | ✔         |
 | `assertTrue(bool $condition[, string $message = ''])`                                                              | ✔         |
 | `assertXmlFileEqualsXmlFile`                                                                                       | ✘         |
 | `assertXmlStringEqualsXmlFile`                                                                                     | ✘         |
 | `assertXmlStringEqualsXmlString`                                                                                   | ✘         |
+
+### Classes
+
+| Class                          | Supported | Mapped to                            |
+|--------------------------------|:---------:|--------------------------------------|
+| `PHPUnit_Framework_TestCase`   | ✔         | `mageekguy\atoum\phpunit\test`       |
+| `PHPUnit_Framework_Constraint` | ✔         | `mageekguy\atoum\phpunit\constraint` |
 
 ### Exceptions
 
