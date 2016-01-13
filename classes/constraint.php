@@ -8,11 +8,12 @@ abstract class constraint
 {
     protected $description;
 
-    public function evaluate($actual, $description = null, $return = false)
+    public function evaluate($actual, $description = null, $return = null)
     {
+        $return = (bool) $return;
         $result = $this->doesMatch($actual);
 
-        if ($return === true)
+        if ($return)
         {
             return $result;
         }

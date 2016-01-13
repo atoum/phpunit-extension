@@ -43,7 +43,7 @@ class assertContainsOnly extends atoum\asserters\phpArray
 
 		forEach ($asserter->getValue() as $item)
 		{
-			if ($nativeType === true)
+			if ($nativeType)
 			{
 				$asserter->{$arguments[0]}($item, isset($arguments[3]) ? $arguments[3] : null);
 			}

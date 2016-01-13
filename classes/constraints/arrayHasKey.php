@@ -23,7 +23,7 @@ class arrayHasKey extends constraint
 
     protected function matches($actual)
     {
-        if (is_null($this->expected) === true)
+        if (is_null($this->expected))
         {
             throw new \PHPUnit_Framework_Exception('Expected value of ' . __CLASS__ . ' must not be null');
         }

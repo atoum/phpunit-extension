@@ -34,7 +34,7 @@ class arraySubset extends constraint
         $asserter = new asserters\phpArray();
         $asserter->setWith($actual);
 
-        if ($this->strict === true)
+        if ($this->strict)
         {
             $asserter->isIdenticalTo($patched);
         }
