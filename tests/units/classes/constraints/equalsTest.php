@@ -42,6 +42,13 @@ class equals extends \PHPUnit_Framework_TestCase
 
 	protected function equalValues()
 	{
+		$book1                  = new \book();
+		$book1->author          = new \author('Terry Pratchett');
+		$book1->author->books[] = $book1;
+		$book2                  = new \book();
+		$book2->author          = new \author('Terry Pratchett');
+		$book2->author->books[] = $book2;
+
 		$object1  = new \sampleClass(4, 8, 15);
 		$object2  = new \sampleClass(4, 8, 15);
 		$storage1 = new \splObjectStorage();
@@ -65,6 +72,8 @@ class equals extends \PHPUnit_Framework_TestCase
 			//array(array(new \struct(2.3)), array(new \struct(2.5)), 0.5),
 			array(1, 2, 1),
 			array($object1, $object2),
+			// Asserting on objects with cyclic dependencies is not supported
+			//array($book1, $book2),
 			array($storage1, $storage2),
 			array(
 				new \dateTime('2013-03-29 04:13:35', new \dateTimeZone('America/New_York')),

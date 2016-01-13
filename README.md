@@ -9,6 +9,7 @@ Install extension using [composer](https://getcomposer.org):
 ```json
 {
     "require-dev": {
+        "atoum/atoum": "dev-virtual-hooks",
         "atoum/phpunit-extension": "~1.0"
     }
 }
@@ -96,4 +97,4 @@ $extension->addToRunner($runner);
 |------------------------------------------------|:---------:|----------------------------------------------------|
 | `PHPUnit_Framework_AssertionFailedError`       | ✔         | `mageekguy\atoum\asserter\exception`               |
 | `PHPUnit_Framework_Exception`                  | ✔         | `mageekguy\\atoum\\exceptions\\runtime`            |
-| `PHPUnit_Framework_ExpectationFailedException` | ✔         | `mageekguy\\atoum\\phpunit\\constraint\\exception` |
+| `PHPUnit_Framework_ExpectationFailedException` | ✔         | `mageekguy\atoum\phpunit\constraint\exception` |

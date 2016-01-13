@@ -192,8 +192,8 @@ class same extends \PHPUnit_Framework_TestCase
 			// objects
 			array(new \sampleClass(4, 8, 15), new \sampleClass(16, 23, 42)),
 			array($object1, $object2),
-			//[$book1, $book2],
-			//[$book3, $book4], // same content, different class
+			[$book1, $book2],
+			[$book3, $book4], // same content, different class
 			// resources
 			array(fopen(__FILE__, 'r'), fopen(__FILE__, 'r')),
 			// SplObjectStorage
