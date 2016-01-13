@@ -14,4 +14,4 @@ before_script:
 
 script:
   - vendor/bin/phpunit
-  - vendor/bin/atoum --test-ext
+  - vendor/bin/atoum --test-ext -ulr
