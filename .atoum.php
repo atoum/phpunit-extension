@@ -13,3 +13,6 @@ if (getenv('TRAVIS_PHP_VERSION') === '7.0')
         ->noCodeCoverage()
     ;
 }
+
+$script->noCodeCoverageForClasses('mageekguy\atoum\asserter');
+$script->noCodeCoverageForClasses('mageekguy\atoum\asserters');

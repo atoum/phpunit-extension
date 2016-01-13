@@ -6,51 +6,51 @@ use mageekguy\atoum\asserter\exception;
 
 abstract class constraint
 {
-    protected $description;
+	protected $description;
 
-    public function evaluate($actual, $description = null, $return = null)
-    {
-        $return = (bool) $return;
-        $result = $this->doesMatch($actual);
+	public function evaluate($actual, $description = null, $return = null)
+	{
+		$return = (bool) $return;
+		$result = $this->doesMatch($actual);
 
-        if ($return)
-        {
-            return $result;
-        }
+		if ($return)
+		{
+			return $result;
+		}
 
-        if ($result === false)
-        {
-            $this->fail($actual, $description ?: $this->description);
-        }
+		if ($result === false)
+		{
+			$this->fail($actual, $description ?: $this->description);
+		}
 
-        return $this;
-    }
+		return $this;
+	}
 
-    public function count()
-    {
-        return 1;
-    }
+	public function count()
+	{
+		return 1;
+	}
 
-    abstract protected function matches($actual);
+	abstract protected function matches($actual);
 
-    protected function fail($actual, $message)
-    {
-        throw new \PHPUnit_Framework_ExpectationFailedException($message);
-    }
+	protected function fail($actual, $message)
+	{
+		throw new \PHPUnit_Framework_ExpectationFailedException($message);
+	}
 
-    private function doesMatch($actual)
-    {
-        try
-        {
-            $this->matches($actual);
-        }
-        catch (exception $exception)
-        {
-            $this->description = $this->description ?: $exception->getMessage();
+	private function doesMatch($actual)
+	{
+		try
+		{
+			$this->matches($actual);
+		}
+		catch (exception $exception)
+		{
+			$this->description = $this->description ?: $exception->getMessage();
 
-            return false;
-        }
+			return false;
+		}
 
-        return true;
-    }
+		return true;
+	}
 }

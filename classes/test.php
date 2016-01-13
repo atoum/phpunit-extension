@@ -41,49 +41,49 @@ abstract class test extends atoum\test
 
 		$this->getAssertionManager()
 			->setHandler('assertArrayHasKey', function($expected, $actual, $failMessage = null) use ($test) {
-					$test->assertThat($actual, new atoum\phpunit\constraints\arrayHasKey($expected, $failMessage));
+					$test->assertThat($actual, new atoum\phpunit\constraints\arrayHasKey($expected, $failMessage, $test->getAnalyzer()));
 
 					return $test;
 				}
 			)
 			->setHandler('assertArraySubset', function(array $expected, array $actual, $failMessage = null, $strict = null) use ($test) {
-					$test->assertThat($actual, new atoum\phpunit\constraints\arraySubset($expected, $failMessage, $strict));
+					$test->assertThat($actual, new atoum\phpunit\constraints\arraySubset($expected, $failMessage, $strict, $test->getAnalyzer()));
 
 					return $test;
 				}
 			)
 			->setHandler('assertContainsOnly', function($expected, $actual, $isNativeType = null, $failMessage = null) use ($test) {
-					$test->assertThat($actual, new atoum\phpunit\constraints\containsOnly($expected, $isNativeType, $failMessage));
+					$test->assertThat($actual, new atoum\phpunit\constraints\containsOnly($expected, $isNativeType, $failMessage, $test->getAnalyzer()));
 
 					return $test;
 				}
 			)
 			->setHandler('assertContainsOnlyInstancesOf', function($expected, $actual, $failMessage = null) use ($test) {
-					$test->assertThat($actual, new atoum\phpunit\constraints\containsOnlyInstancesOf($expected, $failMessage));
+					$test->assertThat($actual, new atoum\phpunit\constraints\containsOnlyInstancesOf($expected, $failMessage, $test->getAnalyzer()));
 
 					return $test;
 				}
 			)
 			->setHandler('assertCount', function($expected, $actual, $failMessage = null) use ($test) {
-					$test->assertThat($actual, new atoum\phpunit\constraints\count($expected, $failMessage));
+					$test->assertThat($actual, new atoum\phpunit\constraints\count($expected, $failMessage, $test->getAnalyzer()));
 
 					return $test;
 				}
 			)
 			->setHandler('assertEmpty', function($actual, $failMessage = null) use ($test) {
-					$test->assertThat($actual, new atoum\phpunit\constraints\isEmpty($failMessage));
+					$test->assertThat($actual, new atoum\phpunit\constraints\isEmpty($failMessage, $test->getAnalyzer()));
 
 					return $test;
 				}
 			)
 			->setHandler('assertEquals', function($expected, $actual, $failMessage = null, $delta = null, $maxDepth = null, $canonicalize = null, $ignoreCase = null) use ($test) {
-					$test->assertThat($actual, new atoum\phpunit\constraints\equals($expected, $failMessage, $delta, $maxDepth, $canonicalize, $ignoreCase));
+					$test->assertThat($actual, new atoum\phpunit\constraints\equals($expected, $failMessage, $delta, $maxDepth, $canonicalize, $ignoreCase, $test->getAnalyzer()));
 
 					return $test;
 				}
 			)
 			->setHandler('assertFalse', function($actual, $failMessage = null) use ($test) {
-					$test->assertThat($actual, new atoum\phpunit\constraints\boolean(false, $failMessage));
+					$test->assertThat($actual, new atoum\phpunit\constraints\boolean(false, $failMessage, $test->getAnalyzer()));
 
 					return $test;
 				}
@@ -113,7 +113,7 @@ abstract class test extends atoum\test
 				}
 			)
 			->setHandler('assertTrue', function($actual, $failMessage = null) use ($test) {
-					$test->assertThat($actual, new atoum\phpunit\constraints\boolean(true, $failMessage));
+					$test->assertThat($actual, new atoum\phpunit\constraints\boolean(true, $failMessage, $test->getAnalyzer()));
 
 					return $test;
 				}
