@@ -60,6 +60,13 @@ class same extends \PHPUnit_Framework_TestCase
 
 	protected function equalValues()
 	{
+		$book1                  = new \book();
+		$book1->author          = new \author('Terry Pratchett');
+		$book1->author->books[] = $book1;
+		$book2                  = new \book();
+		$book2->author          = new \author('Terry Pratchett');
+		$book2->author->books[] = $book2;
+
 		$object1  = new \sampleClass(4, 8, 15);
 		$object2  = new \sampleClass(4, 8, 15);
 		$storage1 = new \splObjectStorage();
@@ -83,6 +90,8 @@ class same extends \PHPUnit_Framework_TestCase
 			//array(array(new \struct(2.3)), array(new \struct(2.5)), 0.5),
 			array(1, 2, 1),
 			array($object1, $object2),
+			// Asserting on objects with cyclic dependencies is not supported
+			//array($book1, $book2),
 			array($storage1, $storage2),
 			array(
 				new \dateTime('2013-03-29 04:13:35', new \dateTimeZone('America/New_York')),
@@ -144,7 +153,6 @@ class same extends \PHPUnit_Framework_TestCase
 
 	protected function notEqualValues()
 	{
-		// cyclic dependencies
 		$book1                  = new \book();
 		$book1->author          = new \author('Terry Pratchett');
 		$book1->author->books[] = $book1;
@@ -166,37 +174,28 @@ class same extends \PHPUnit_Framework_TestCase
 		$storage2->attach($object3); // same content, different object
 
 		return array(
-			// strings
 			array('a', 'b'),
 			array('a', 'A'),
-			// https://github.com/sebastianbergmann/phpunit/issues/1023
 			array('9E6666666','9E7777777'),
-			// integers
 			array(1, 2),
 			array(2, 1),
-			// floats
 			array(2.3, 4.2),
 			array(2.3, 4.2, 0.5),
 			array(array(2.3), array(4.2), 0.5),
 			array(array(array(2.3)), array(array(4.2)), 0.5),
 			array(new \struct(2.3), new \struct(4.2), 0.5),
 			array(array(new \struct(2.3)), array(new \struct(4.2)), 0.5),
-			// NAN
 			array(NAN, NAN),
-			// arrays
 			array(array(), array(0 => 1)),
 			array(array(0     => 1), array()),
 			array(array(0     => null), array()),
 			array(array(0     => 1, 1 => 2), array(0     => 1, 1 => 3)),
 			array(array('a', 'b' => array(1, 2)), array('a', 'b' => array(2, 1))),
-			// objects
 			array(new \sampleClass(4, 8, 15), new \sampleClass(16, 23, 42)),
 			array($object1, $object2),
 			array($book1, $book2),
-			array($book3, $book4), // same content, different class
-			// resources
+			array($book3, $book4),
 			array(fopen(__FILE__, 'r'), fopen(__FILE__, 'r')),
-			// SplObjectStorage
 			array($storage1, $storage2),
 			array(
 				new \dateTime('2013-03-29 04:13:35', new \dateTimeZone('America/New_York')),
@@ -242,17 +241,12 @@ class same extends \PHPUnit_Framework_TestCase
 				new \dateTime('2013-03-29T05:13:35-0600'),
 				new \dateTime('2013-03-29T05:13:35-0500'),
 			),
-			// Exception
-			//array(new Exception('Exception 1'), new Exception('Exception 2')),
-			// different types
 			array(new \sampleClass(4, 8, 15), false),
 			array(false, new \sampleClass(4, 8, 15)),
 			array(array(0        => 1, 1 => 2), false),
 			array(false, array(0 => 1, 1 => 2)),
 			array(array(), new \stdClass()),
 			array(new \stdClass(), array()),
-			// PHP: 0 == 'Foobar' => true!
-			// We want these values to differ
 			array(0, 'Foobar'),
 			array('Foobar', 0),
 			array(3, acos(8)),
@@ -270,6 +264,7 @@ class same extends \PHPUnit_Framework_TestCase
 			array('a', 'a'),
 			array(0, 0),
 			array(2.3, 2.3),
+			// Asserting on float is not supported
 			//array(1/3, 1 - 2/3),
 			array(log(0), log(0)),
 			array(array(), array()),

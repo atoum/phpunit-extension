@@ -46,6 +46,12 @@ abstract class test extends atoum\test
 					return $test;
 				}
 			)
+			->setHandler('assertArraySubset', function(array $expected, array $actual, $failMessage = null, $strict = null) use ($test) {
+					$test->assertThat($actual, new atoum\phpunit\constraints\arraySubset($expected, $failMessage, $strict));
+
+					return $test;
+				}
+			)
 			->setHandler('assertCount', function($expected, $actual, $failMessage = null) use ($test) {
 					$test->assertThat($actual, new atoum\phpunit\constraints\count($expected, $failMessage));
 
