@@ -62,7 +62,7 @@ $extension->addToRunner($runner);
 | `assertEquals(DOMDocument $expected, DOMDocument $actual[, string $message = ''])`                                 | ✘         |
 | `assertEquals(object $expected, object $actual[, string $message = ''])`                                           | ✔         |
 | `assertEquals(array $expected, array $actual[, string $message = ''])`                                             | ✔         |
-| `assertFalse`                                                                                                      | ✘         |
+| `assertFalse(bool $condition[, string $message = ''])`                                                             | ✔         |
 | `assertFileEquals`                                                                                                 | ✘         |
 | `assertFileExists`                                                                                                 | ✘         |
 | `assertGreaterThan`                                                                                                | ✘         |
@@ -86,7 +86,7 @@ $extension->addToRunner($runner);
 | `assertStringEqualsFile`                                                                                           | ✘         |
 | `assertStringStartsWith`                                                                                           | ✘         |
 | `assertThat`                                                                                                       | ✘         |
-| `assertTrue`                                                                                                       | ✘         |
+| `assertTrue(bool $condition[, string $message = ''])`                                                              | ✔         |
 | `assertXmlFileEqualsXmlFile`                                                                                       | ✘         |
 | `assertXmlStringEqualsXmlFile`                                                                                     | ✘         |
 | `assertXmlStringEqualsXmlString`                                                                                   | ✘         |
