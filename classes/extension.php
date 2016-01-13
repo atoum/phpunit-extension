@@ -39,6 +39,7 @@ class extension implements atoum\extension
 
 	public function setRunner(runner $runner)
 	{
+
 		$this->runner = $runner;
 
 		return $this;

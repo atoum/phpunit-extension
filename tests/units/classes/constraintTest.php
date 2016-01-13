@@ -30,10 +30,11 @@ namespace mageekguy\atoum\phpunit\tests\units
         public function testEvaluate()
         {
             $constraint = new failingConstraint();
+            $message = uniqid();
 
             try
             {
-                $constraint->evaluate(uniqid(), $message = uniqid());
+                $constraint->evaluate(uniqid(), $message);
 
                 $this->fail();
             }

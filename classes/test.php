@@ -52,6 +52,18 @@ abstract class test extends atoum\test
 					return $test;
 				}
 			)
+			->setHandler('assertContainsOnly', function($expected, $actual, $isNativeType = null, $failMessage = null) use ($test) {
+					$test->assertThat($actual, new atoum\phpunit\constraints\containsOnly($expected, $isNativeType, $failMessage));
+
+					return $test;
+				}
+			)
+			->setHandler('assertContainsOnlyInstancesOf', function($expected, $actual, $failMessage = null) use ($test) {
+					$test->assertThat($actual, new atoum\phpunit\constraints\containsOnlyInstancesOf($expected, $failMessage));
+
+					return $test;
+				}
+			)
 			->setHandler('assertCount', function($expected, $actual, $failMessage = null) use ($test) {
 					$test->assertThat($actual, new atoum\phpunit\constraints\count($expected, $failMessage));
 
