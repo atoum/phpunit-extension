@@ -64,6 +64,12 @@ abstract class test extends atoum\test
 					return $test;
 				}
 			)
+			->setHandler('assertFalse', function($actual, $failMessage = null) use ($test) {
+					$test->assertThat($actual, new atoum\phpunit\constraints\boolean(false, $failMessage));
+
+					return $test;
+				}
+			)
 			->setHandler('assertInstanceOf', function($expected, $actual, $failMessage = null) use ($test) {
 					$test->assertThat($actual, new atoum\phpunit\constraints\isInstanceOf($expected, $failMessage));
 
@@ -72,6 +78,12 @@ abstract class test extends atoum\test
 			)
 			->setHandler('assertSame', function($expected, $actual, $failMessage = null) use ($test) {
 					$test->assertThat($actual, new atoum\phpunit\constraints\same($expected, $failMessage));
+
+					return $test;
+				}
+			)
+			->setHandler('assertTrue', function($actual, $failMessage = null) use ($test) {
+					$test->assertThat($actual, new atoum\phpunit\constraints\boolean(true, $failMessage));
 
 					return $test;
 				}

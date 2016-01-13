@@ -4,8 +4,7 @@ namespace mageekguy\atoum\phpunit\constraints;
 
 
 use mageekguy\atoum\asserter\exception;
-use mageekguy\atoum\asserters\boolean;
-use mageekguy\atoum\asserters\phpArray;
+use mageekguy\atoum\asserters;
 use mageekguy\atoum\phpunit\constraint;
 use mageekguy\atoum\exceptions;
 use mageekguy\atoum\tools\variable\analyzer;
@@ -36,12 +35,12 @@ class arrayHasKey extends constraint
 
         if ($this->analyzer->isArray($actual))
         {
-            $asserter = new phpArray();
+            $asserter = new asserters\phpArray();
             $asserter->setWith($actual)->hasKey($this->expected);
         }
         else
         {
-            $asserter = new boolean();
+            $asserter = new asserters\boolean();
 
             try
             {
