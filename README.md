@@ -76,7 +76,8 @@ $extension->addToRunner($runner);
 | `assertLessThan`                                                                                                   | ✘         |
 | `assertLessThanOrEqual`                                                                                            | ✘         |
 | `assertNan`                                                                                                        | ✘         |
-| `assertNull`                                                                                                       | ✘         |
+| `assertNotNull(mixed $variable[, string $message = ''])`                                                           | ✔         |
+| `assertNull(mixed $variable[, string $message = ''])`                                                              | ✔         |
 | `assertObjectHasAttribute`                                                                                         | ✘         |
 | `assertRegExp`                                                                                                     | ✘         |
 | `assertStringMatchesFormat`                                                                                        | ✘         |
