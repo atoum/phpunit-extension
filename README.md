@@ -67,7 +67,7 @@ $extension->addToRunner($runner);
 | `assertFileExists`                                                                                                 | ✘         |
 | `assertGreaterThan`                                                                                                | ✘         |
 | `assertGreaterThanOrEqual`                                                                                         | ✘         |
-| `assertInfinite`                                                                                                   | ✘         |
+| `assertInfinite(mixed $variable[, string $message = ''])`                                                          | ✔         |
 | `assertInstanceOf($expected, $actual[, $message = ''])`                                                            | ✔         |
 | `assertInternalType`                                                                                               | ✘         |
 | `assertJsonFileEqualsJsonFile`                                                                                     | ✘         |
