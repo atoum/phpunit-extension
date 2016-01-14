@@ -23,7 +23,8 @@ if (getenv('TRAVIS_PHP_VERSION') === '7.0')
 }
 
 $script->noCodeCoverageForClasses('mageekguy\atoum\asserter');
-$script->noCodeCoverageForClasses('mageekguy\atoum\asserters');
+$script->noCodeCoverageForNamespaces('mageekguy\atoum\asserters');
+$script->noCodeCoverageForNamespaces('mageekguy\atoum\autoloop');
 
 $notifier = new notifier\terminal();
 $report = $script->addDefaultReport();
