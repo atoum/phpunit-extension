@@ -47,50 +47,76 @@ $extension->addToRunner($runner);
 | Method                                                                                                             | Supported |
 |--------------------------------------------------------------------------------------------------------------------|:---------:|
 | `assertArrayHasKey(mixed $key, array $array[, string $message = ''])`                                              | ✔         |
+| `assertArrayNotHasKey`                                                                                             | ✘         |
 | `assertClassHasAttribute`                                                                                          | ✘         |
+| `assertClassNotHasAttribute`                                                                                       | ✘         |
 | `assertArraySubset(array $subset, array $array[, bool $strict = '', string $message = ''])`                        | ✔         |
 | `assertClassHasStaticAttribute`                                                                                    | ✘         |
+| `assertClassNotHasStaticAttribute`                                                                                 | ✘         |
 | `assertContains(mixed $needle, Iterator|array $haystack[, string $message = ''])`                                  | ✔         |
 | `assertContains(string $needle, string $haystack[, string $message = '', boolean $ignoreCase = FALSE])`            | ✔         |
+| `assertNotContains`                                                                                                | ✘         |
 | `assertContainsOnly(string $type, Iterator|array $haystack[, boolean $isNativeType = NULL, string $message = ''])` | ✔         |
 | `assertContainsOnlyInstancesOf(string $classname, Traversable|array $haystack[, string $message = ''])`            | ✔         |
+| `assertNotContainsOnly`                                                                                            | ✘         |
 | `assertCount($expectedCount, $haystack[, string $message = ''])`                                                   | ✔         |
+| `assertNotCount`                                                                                                   | ✘         |
 | `assertEmpty(mixed $actual[, string $message = ''])`                                                               | ✔         |
+| `assertNotEmpty`                                                                                                   | ✘         |
 | `assertEqualXMLStructure`                                                                                          | ✘         |
 | `assertEquals(mixed $expected, mixed $actual[, string $message = ''])`                                             | ✔         |
 | `assertEquals(float $expected, float $actual[, string $message = '', float $delta = 0])`                           | ✔         |
 | `assertEquals(DOMDocument $expected, DOMDocument $actual[, string $message = ''])`                                 | ✘         |
 | `assertEquals(object $expected, object $actual[, string $message = ''])`                                           | ✔         |
 | `assertEquals(array $expected, array $actual[, string $message = ''])`                                             | ✔         |
+| `assertNotEquals`                                                                                                  | ✘         |
 | `assertFalse(bool $condition[, string $message = ''])`                                                             | ✔         |
+| `assertNotFalse`                                                                                                   | ✘         |
 | `assertFileEquals`                                                                                                 | ✘         |
+| `assertFileNotEquals`                                                                                              | ✘         |
 | `assertFileExists`                                                                                                 | ✘         |
+| `assertFileNotExists`                                                                                              | ✘         |
 | `assertGreaterThan`                                                                                                | ✘         |
 | `assertGreaterThanOrEqual`                                                                                         | ✘         |
 | `assertInfinite(mixed $variable[, string $message = ''])`                                                          | ✔         |
+| `assertFinite`                                                                                                     | ✘         |
 | `assertInstanceOf($expected, $actual[, $message = ''])`                                                            | ✔         |
+| `assertNotInstanceOf`                                                                                              | ✘         |
 | `assertInternalType`                                                                                               | ✘         |
+| `assertNotInternalType`                                                                                            | ✘         |
 | `assertJsonFileEqualsJsonFile`                                                                                     | ✘         |
 | `assertJsonStringEqualsJsonFile`                                                                                   | ✘         |
 | `assertJsonStringEqualsJsonString`                                                                                 | ✘         |
 | `assertLessThan`                                                                                                   | ✘         |
 | `assertLessThanOrEqual`                                                                                            | ✘         |
 | `assertNan(mixed $variable[, string $message = ''])`                                                               | ✔         |
-| `assertNotNull(mixed $variable[, string $message = ''])`                                                           | ✔         |
 | `assertNull(mixed $variable[, string $message = ''])`                                                              | ✔         |
+| `assertNotNull(mixed $variable[, string $message = ''])`                                                           | ✔         |
 | `assertObjectHasAttribute`                                                                                         | ✘         |
+| `assertObjectNotHasAttribute`                                                                                      | ✘         |
 | `assertRegExp`                                                                                                     | ✘         |
+| `assertNotRegExp`                                                                                                  | ✘         |
 | `assertStringMatchesFormat`                                                                                        | ✘         |
+| `assertStringNotMatchesFormat`                                                                                     | ✘         |
 | `assertStringMatchesFormatFile`                                                                                    | ✘         |
+| `assertStringNotMatchesFormatFile`                                                                                 | ✘         |
 | `assertSame(mixed $expected, mixed $actual[, string $message = ''])`                                               | ✔         |
+| `assertNotSame`                                                                                                    | ✘         |
 | `assertStringEndsWith`                                                                                             | ✘         |
+| `assertStringEndsNotWith`                                                                                          | ✘         |
 | `assertStringEqualsFile`                                                                                           | ✘         |
+| `assertStringNotEqualsFile`                                                                                        | ✘         |
 | `assertStringStartsWith`                                                                                           | ✘         |
+| `assertStringStartsNotWith`                                                                                        | ✘         |
 | `assertThat(mixed $value, PHPUnit_Framework_Constraint $constraint[, $message = ''])`                              | ✔         |
 | `assertTrue(bool $condition[, string $message = ''])`                                                              | ✔         |
+| `assertNotTrue`                                                                                                    | ✘         |
 | `assertXmlFileEqualsXmlFile`                                                                                       | ✘         |
+| `assertXmlFileNotEqualsXmlFile`                                                                                    | ✘         |
 | `assertXmlStringEqualsXmlFile`                                                                                     | ✘         |
+| `assertXmlStringNotEqualsXmlFile`                                                                                  | ✘         |
 | `assertXmlStringEqualsXmlString`                                                                                   | ✘         |
+| `assertXmlStringNotEqualsXmlString`                                                                                | ✘         |
 
 ### Classes
 
