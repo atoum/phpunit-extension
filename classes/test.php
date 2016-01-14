@@ -100,6 +100,12 @@ abstract class test extends atoum\test
 					return $test;
 				}
 			)
+			->setHandler('assertNaN', function($actual, $failMessage = null) use ($test) {
+					$test->assertThat($actual, new atoum\phpunit\constraints\nan($failMessage));
+
+					return $test;
+				}
+			)
 			->setHandler('assertNull', function($actual, $failMessage = null) use ($test) {
 					$test->assertThat($actual, new atoum\phpunit\constraints\isNull($failMessage));
 

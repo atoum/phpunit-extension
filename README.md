@@ -75,7 +75,7 @@ $extension->addToRunner($runner);
 | `assertJsonStringEqualsJsonString`                                                                                 | ✘         |
 | `assertLessThan`                                                                                                   | ✘         |
 | `assertLessThanOrEqual`                                                                                            | ✘         |
-| `assertNan`                                                                                                        | ✘         |
+| `assertNan(mixed $variable[, string $message = ''])`                                                               | ✔         |
 | `assertNotNull(mixed $variable[, string $message = ''])`                                                           | ✔         |
 | `assertNull(mixed $variable[, string $message = ''])`                                                              | ✔         |
 | `assertObjectHasAttribute`                                                                                         | ✘         |
