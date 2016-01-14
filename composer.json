@@ -12,11 +12,12 @@
         }
     ],
     "require": {
-        "atoum/atoum": "dev-virtual-hooks"
+        "atoum/atoum": "dev-virtual-hooks as 2.6.0"
 
     },
     "require-dev": {
-        "phpunit/phpunit": "@stable"
+        "phpunit/phpunit": "@stable",
+        "atoum/autoloop-extension": "^0.0.1"
     },
     "autoload": {
         "files": ["autoloader.php"]
