@@ -26,6 +26,9 @@ $script->noCodeCoverageForClasses('mageekguy\atoum\asserter');
 $script->noCodeCoverageForNamespaces('mageekguy\atoum\asserters');
 $script->noCodeCoverageForNamespaces('mageekguy\atoum\autoloop');
 
-$notifier = new notifier\terminal();
-$report = $script->addDefaultReport();
-$report->addField($notifier);
+if (PHP_OS === 'Darwin') {
+    $notifier = new notifier\terminal();
+    $report = $script->addDefaultReport();
+    $report->addField($notifier);
+}
+
