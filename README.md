@@ -76,10 +76,10 @@ $extension->addToRunner($runner);
 | `assertFileNotEquals`                                                                                              | ✘         |
 | `assertFileExists`                                                                                                 | ✘         |
 | `assertFileNotExists`                                                                                              | ✘         |
-| `assertGreaterThan`                                                                                                | ✘         |
-| `assertGreaterThanOrEqual`                                                                                         | ✘         |
+| `assertGreaterThan(mixed $expected, mixed $actual[, string $message = ''])`                                        | ✔         |
+| `assertGreaterThanOrEqual(mixed $expected, mixed $actual[, string $message = ''])`                                 | ✔         |
 | `assertInfinite(mixed $variable[, string $message = ''])`                                                          | ✔         |
-| `assertFinite`                                                                                                     | ✘         |
+| `assertFinite(mixed $variable[, string $message = ''])`                                                            | ✔         |
 | `assertInstanceOf($expected, $actual[, $message = ''])`                                                            | ✔         |
 | `assertNotInstanceOf`                                                                                              | ✘         |
 | `assertInternalType`                                                                                               | ✘         |

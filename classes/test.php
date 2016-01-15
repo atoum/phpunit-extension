@@ -88,6 +88,24 @@ abstract class test extends atoum\test
 					return $test;
 				}
 			)
+			->setHandler('assertFinite', function($actual, $failMessage = null) use ($test) {
+				$test->assertThat($actual, new atoum\phpunit\constraints\finite($failMessage, $test->getAnalyzer()));
+
+				return $test;
+			}
+			)
+			->setHandler('assertGreaterThan', function($expected, $actual, $failMessage = null) use ($test) {
+					$test->assertThat($actual, new atoum\phpunit\constraints\greaterThan($expected, $failMessage, $test->getAnalyzer()));
+
+					return $test;
+				}
+			)
+			->setHandler('assertGreaterThanOrEqual', function($expected, $actual, $failMessage = null) use ($test) {
+				$test->assertThat($actual, new atoum\phpunit\constraints\greaterThanOrEqual($expected, $failMessage, $test->getAnalyzer()));
+
+				return $test;
+			}
+			)
 			->setHandler('assertInfinite', function($actual, $failMessage = null) use ($test) {
 					$test->assertThat($actual, new atoum\phpunit\constraints\infinite($failMessage));
 
