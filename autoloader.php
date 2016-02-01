@@ -5,6 +5,8 @@ use mageekguy\atoum;
 
 atoum\autoloader::get()
 	->addNamespaceAlias('atoum\phpunit', __NAMESPACE__)
+	->addClassAlias('atoum\phpunit', __NAMESPACE__ . '\\test')
+	->addClassAlias('mageekguy\atoum\phpunit', __NAMESPACE__ . '\\test')
 	->addDirectory(__NAMESPACE__, __DIR__ . DIRECTORY_SEPARATOR . 'classes')
 ;
 
@@ -22,7 +24,7 @@ if ($isPhpUnit === false)
 
 	foreach ($aliases as $phpunitClass => $atoumClass)
 	{
-		if (class_exists($phpunitClass))
+		if (class_exists($phpunitClass, false))
 		{
 			throw new atoum\exceptions\logic(sprintf('Class %s already exists', $phpunitClass));
 		}
