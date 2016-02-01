@@ -81,7 +81,7 @@ $extension->addToRunner($runner);
 | `assertInfinite(mixed $variable[, string $message = ''])`                                                          | ✔         |
 | `assertFinite(mixed $variable[, string $message = ''])`                                                            | ✔         |
 | `assertInstanceOf($expected, $actual[, $message = ''])`                                                            | ✔         |
-| `assertNotInstanceOf`                                                                                              | ✘         |
+| `assertNotInstanceOf($expected, $actual[, $message = ''])`                                                         | ✘         |
 | `assertInternalType($expected, $actual[, $message = ''])`                                                          | ✔         |
 | `assertNotInternalType`                                                                                            | ✘         |
 | `assertJsonFileEqualsJsonFile`                                                                                     | ✘         |
@@ -101,7 +101,7 @@ $extension->addToRunner($runner);
 | `assertStringMatchesFormatFile`                                                                                    | ✘         |
 | `assertStringNotMatchesFormatFile`                                                                                 | ✘         |
 | `assertSame(mixed $expected, mixed $actual[, string $message = ''])`                                               | ✔         |
-| `assertNotSame`                                                                                                    | ✘         |
+| `assertNotSame(mixed $expected, mixed $actual[, string $message = ''])`                                            | ✔         |
 | `assertStringEndsWith`                                                                                             | ✘         |
 | `assertStringEndsNotWith`                                                                                          | ✘         |
 | `assertStringEqualsFile`                                                                                           | ✘         |

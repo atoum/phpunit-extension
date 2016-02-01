@@ -23,13 +23,8 @@ class equals extends \PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider equalProvider
 	 */
-	public function testAssertEqualsSucceeds($expected, $actual, $delta = null, $canonicalize = null, $ignoreCase = null, $skip = null)
+	public function testAssertEqualsSucceeds($expected, $actual, $delta = null, $canonicalize = null, $ignoreCase = null)
 	{
-		if ($skip !== null)
-		{
-			$this->markTestSkipped($skip);
-		}
-
 		$constraint = new testedClass($expected, null, $delta, 10, $canonicalize, $ignoreCase);
 
 		$this->assertSame($constraint, $constraint->evaluate($actual));
