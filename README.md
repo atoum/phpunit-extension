@@ -132,3 +132,37 @@ $extension->addToRunner($runner);
 | `PHPUnit_Framework_AssertionFailedError`       | ✔         | `mageekguy\atoum\asserter\exception`           |
 | `PHPUnit_Framework_Exception`                  | ✔         | `mageekguy\atoum\exceptions\runtime`           |
 | `PHPUnit_Framework_ExpectationFailedException` | ✔         | `mageekguy\atoum\phpunit\constraint\exception` |
+
+### Annotations
+
+| Annotation                        | Supported | Note                                              |
+|-----------------------------------|:---------:|:-------------------------------------------------:|
+| `@author`                         | ✔         |                                                   |
+| `@after`                          | ✘         |                                                   |
+| `@afterClass`                     | ✘         |                                                   |
+| `@backupGlobals`                  | ✘         |                                                   |
+| `@backupStaticAttributes`         | ✘         |                                                   |
+| `@before`                         | ✘         |                                                   |
+| `@beforeClass`                    | ✘         |                                                   |
+| `@codeCoverageIgnore*`            | ✘         |                                                   |
+| `@covers`                         | ✘         |                                                   |
+| `@coversDefaultClass`             | ✘         |                                                   |
+| `@coversNothing`                  | ✘         |                                                   |
+| `@dataProvider`                   | ✔         |                                                   |
+| `@depends`                        | ✘         |                                                   |
+| `@expectedException`              | ✘         |                                                   |
+| `@expectedExceptionCode`          | ✘         |                                                   |
+| `@expectedExceptionMessage`       | ✘         |                                                   |
+| `@expectedExceptionMessageRegExp` | ✘         |                                                   |
+| `@group`                          | ✔         |                                                   |
+| `@large`                          | ✔         | Does not support strict-mode failures             |
+| `@medium`                         | ✔         | Does not support strict-mode failures             |
+| `@preserveGlobalState`            | ✘         |                                                   |
+| `@requires`                       | ✘         |                                                   |
+| `@runTestsInSeparateProcesses`    | ✔         | Does not preserve global state in child processes |
+| `@runInSeparateProcess`           | ✔         | Does not preserve global state in child processes |
+| `@small`                          | ✔         | Does not support strict-mode failures             |
+| `@test`                           | ✘         |                                                   |
+| `@testdox`                        | ✘         |                                                   |
+| `@ticket`                         | ✘         |                                                   |
+| `@uses`                           | ✘         |                                                   |

@@ -12,6 +12,9 @@ use mageekguy\atoum\tools\variable\analyzer;
 abstract class test extends atoum\test
 {
 	const defaultEngine = 'inline';
+	const defaultNamespace = '#(?:^|\\\)tests?\\\.*?units?.*?\\\#i';
+
+	private $unsupportedMethods;
 
 	public function __construct(adapter $adapter = null, annotations\extractor $annotationExtractor = null, asserter\generator $asserterGenerator = null, assertion\manager $assertionManager = null, \closure $reflectionClassFactory = null, \closure $phpExtensionFactory = null, analyzer $analyzer = null)
 	{
@@ -118,14 +121,32 @@ abstract class test extends atoum\test
 					return $test;
 				}
 			)
-			->setHandler('assertNotNull', function($actual, $failMessage = null) use ($test) {
-					$test->assertThat($actual, new atoum\phpunit\constraints\isNotNull($failMessage));
+			->setHandler('assertInternalType', function($expected, $actual, $failMessage = null) use ($test) {
+					$test->assertThat($actual, new atoum\phpunit\constraints\internalType($expected, $failMessage));
 
 					return $test;
 				}
 			)
 			->setHandler('assertNaN', function($actual, $failMessage = null) use ($test) {
 					$test->assertThat($actual, new atoum\phpunit\constraints\nan($failMessage));
+
+					return $test;
+				}
+			)
+			->setHandler('assertNotInstanceOf', function($expected, $actual, $failMessage = null) use ($test) {
+					$test->assertThat($actual, new atoum\phpunit\constraints\isNotInstanceOf($expected, $failMessage));
+
+					return $test;
+				}
+			)
+			->setHandler('assertNotNull', function($actual, $failMessage = null) use ($test) {
+					$test->assertThat($actual, new atoum\phpunit\constraints\isNotNull($failMessage));
+
+					return $test;
+				}
+			)
+			->setHandler('assertNotSame', function($expected, $actual, $failMessage = null) use ($test) {
+					$test->assertThat($actual, new atoum\phpunit\constraints\notSame($expected, $failMessage));
 
 					return $test;
 				}
@@ -148,13 +169,84 @@ abstract class test extends atoum\test
 					return $test;
 				}
 			)
+			->setHandler('getMock', function() use ($test) {
+					$test->skip('getMock is not supported.');
+				}
+			)
+			->setHandler('setExpectedException', function() use ($test) {
+					$test->skip('setExpectedException is not supported.');
+				}
+			)
 		;
 
 		return $this;
 	}
 
+	public function getTestedClassName()
+	{
+		$testedClassName = parent::getTestedClassName();
+
+		return preg_replace('/test$/i', '', $testedClassName);
+	}
+
 	public function markTestSkipped($message = null)
 	{
 		return $this->skip($message);
+	}
+
+	protected function setMethodAnnotations(annotations\extractor $extractor, & $methodName)
+	{
+		parent::setMethodAnnotations($extractor, $methodName);
+
+		$test = $this;
+
+		$tagHandler = function($value) use ($test, & $methodName) { $test->setMethodTags($methodName, annotations\extractor::toArray($value)); };
+
+		$extractor
+			->setHandler('author', $tagHandler)
+			->setHandler('expectedException', function($value) use ($test, & $methodName) {
+					if ($value) {
+						$test->addUnsupportedMethod($methodName, '@expectedException is not supported.');
+					}
+				}
+			)
+			->setHandler('group', $tagHandler)
+			->setHandler('large', function() use ($tagHandler) { $tagHandler('large'); })
+			->setHandler('medium', function() use ($tagHandler) { $tagHandler('medium'); })
+			->setHandler('runInSeparateProcess', function() use ($test, & $methodName) { $test->setMethodEngine($methodName, 'isolate'); })
+			->setHandler('small', function() use ($tagHandler) { $tagHandler('small'); })
+		;
+
+		return $this;
+	}
+
+	protected function setClassAnnotations(annotations\extractor $extractor)
+	{
+		parent::setClassAnnotations($extractor);
+
+		$test = $this;
+
+		$extractor
+			->setHandler('runTestsInSeparateProcesses', function() use ($test, & $methodName) { $test->setMethodEngine($methodName, 'isolate'); })
+		;
+
+		return $this;
+	}
+
+
+	public function addUnsupportedMethod($testMethod, $reason)
+	{
+		if (isset($this->unsupportedMethods[$testMethod]) === false) {
+			$this->unsupportedMethods[$testMethod] = $reason;
+		}
+
+		return $this;
+	}
+
+	public function beforeTestMethod($testMethod)
+	{
+		if(isset($this->unsupportedMethods[$testMethod])) {
+			$this->markTestSkipped($this->unsupportedMethods[$testMethod]);
+		}
 	}
 }
