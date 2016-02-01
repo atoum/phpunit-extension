@@ -82,7 +82,7 @@ $extension->addToRunner($runner);
 | `assertFinite(mixed $variable[, string $message = ''])`                                                            | ✔         |
 | `assertInstanceOf($expected, $actual[, $message = ''])`                                                            | ✔         |
 | `assertNotInstanceOf`                                                                                              | ✘         |
-| `assertInternalType`                                                                                               | ✘         |
+| `assertInternalType($expected, $actual[, $message = ''])`                                                          | ✔         |
 | `assertNotInternalType`                                                                                            | ✘         |
 | `assertJsonFileEqualsJsonFile`                                                                                     | ✘         |
 | `assertJsonStringEqualsJsonFile`                                                                                   | ✘         |
