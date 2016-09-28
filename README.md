@@ -166,3 +166,7 @@ $extension->addToRunner($runner);
 | `@testdox`                        | ✘         |                                                   |
 | `@ticket`                         | ✘         |                                                   |
 | `@uses`                           | ✘         |                                                   |
+
+## Licence
+
+phpunit-extension is released under the BSD-3-Clause License. See the bundled LICENSE file for details.
