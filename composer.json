@@ -2,7 +2,7 @@
     "name": "atoum/phpunit-extension",
     "type": "library",
     "description": "atoum PHPUnit extension - Run your PHPUnit tests with atoum",
-    "keywords": ["TDD","atoum","test","unit testing","PHPUnit","atoum-extension"],
+    "keywords": ["TDD", "atoum", "test", "unit testing", "PHPUnit", "atoum-extension"],
     "homepage": "http://www.atoum.org",
     "license": "BSD-3-Clause",
     "authors": [
