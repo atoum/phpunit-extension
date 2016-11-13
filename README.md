@@ -1,8 +1,14 @@
-# atoum PHPUnit extension [![Build Status](https://travis-ci.org/atoum/phpunit-extension.svg?branch=master)](https://travis-ci.org/atoum/phpunit-extension)
+# atoum/phpunit-extension [![Build Status](https://travis-ci.org/atoum/phpunit-extension.svg?branch=master)](https://travis-ci.org/atoum/phpunit-extension)
 
-![atoum](http://atoum.org/images/logo/atoum.png)
+This extension allows you to launch your PHPUnit tests with atoum's engine.
+
+This is especially usefull when migrating to atoum.
 
 ## Install it
+
+The extension is still a work in progress. So, you need to require a developpement branch of atoum.
+
+We need your help to complete the extension, so don't hesitate to test the extension and write and issue when you found one.
 
 Install extension using [composer](https://getcomposer.org):
 
@@ -30,6 +36,15 @@ use mageekguy\atoum\phpunit;
 $extension = new phpunit\extension($script);
 
 $extension->addToRunner($runner);
+```
+
+## Use it
+
+You must change the parent class of your tests. For example, instead of `PHPUnit_Framework_TestCase`, extend `mageekguy\atoum\phpunit`.
+
+```diff
+-class EnumTest extends \PHPUnit_Framework_TestCase
++class EnumTest extends \mageekguy\atoum\phpunit
 ```
 
 ## Support
@@ -167,6 +182,15 @@ $extension->addToRunner($runner);
 | `@ticket`                         | ✘         |                                                   |
 | `@uses`                           | ✘         |                                                   |
 
+## Links
+
+* [atoum](http://atoum.org)
+* [atoum's documentation](http://docs.atoum.org)
+* [PHPUnit](https://phpunit.de/)
+
+
 ## Licence
 
 phpunit-extension is released under the BSD-3-Clause License. See the bundled LICENSE file for details.
+
+![atoum](http://atoum.org/images/logo/atoum.png)
