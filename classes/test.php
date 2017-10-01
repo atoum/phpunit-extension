@@ -11,6 +11,7 @@ use mageekguy\atoum\tools\variable\analyzer;
 
 abstract class test extends atoum\test
 {
+	const defaultMethodPrefix = '/^(test|should)|.*_should_/';
 	const defaultEngine = 'inline';
 	const defaultNamespace = '#(?:^|\\\)tests?\\\.*?units?.*?\\\#i';
 
@@ -171,6 +172,10 @@ abstract class test extends atoum\test
 			)
 			->setHandler('getMock', function() use ($test) {
 					$test->skip('getMock is not supported.');
+				}
+			)
+			->setHandler('getMockForAbstractClass', function() use ($test) {
+					$test->skip('getMockForAbstractClass is not supported.');
 				}
 			)
 			->setHandler('setExpectedException', function() use ($test) {

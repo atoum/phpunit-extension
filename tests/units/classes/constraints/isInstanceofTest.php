@@ -11,12 +11,12 @@ class isInstanceOf extends \PHPUnit_Framework_TestCase
 {
 	public function testClass()
 	{
-		$this->assertInstanceOf('mageekguy\atoum\phpunit\constraint', new testedClass(new \stdClass));
+		$this->assertInstanceOf(atoum\phpunit\constraint::class, new testedClass(new \stdClass));
 	}
 
 	public function testAssertInstanceOf()
 	{
-		$constraint = new testedClass('stdClass');
+		$constraint = new testedClass(\stdClass::class);
 		$this->assertSame($constraint, $constraint->evaluate(new \stdClass()));
 
 		try
@@ -43,7 +43,7 @@ class isInstanceOf extends \PHPUnit_Framework_TestCase
 		}
 		catch (\PHPUnit_Framework_Exception $exception)
 		{
-			$this->assertEquals('Argument of mageekguy\atoum\asserters\object::isInstanceOf() must be a class instance or a class name', $exception->getMessage());
+			$this->assertEquals('Argument of mageekguy\atoum\asserters\phpObject::isInstanceOf() must be a class instance or a class name', $exception->getMessage());
 		}
 	}
 }

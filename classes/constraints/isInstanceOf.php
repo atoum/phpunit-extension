@@ -20,7 +20,7 @@ class isInstanceOf extends constraint
 
 	protected function matches($actual)
 	{
-		$asserter = new asserters\object();
+		$asserter = new asserters\phpObject();
 
 		try
 		{

@@ -30,7 +30,7 @@ class containsOnlyInstancesOf extends constraint
 
 		try
 		{
-			$asserter = new asserters\object(null, $this->analyzer);
+			$asserter = new asserters\phpObject(null, $this->analyzer);
 
 			foreach ($actual as $value)
 			{

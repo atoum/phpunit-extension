@@ -12,15 +12,18 @@
         }
     ],
     "require": {
-        "atoum/atoum": "dev-virtual-hooks as 2.6.0"
+        "atoum/atoum": "dev-virtual-hooks as 3.3.0"
 
     },
     "require-dev": {
-        "phpunit/phpunit": "@stable",
-        "atoum/autoloop-extension": "^0.0.1"
+        "phpunit/phpunit": "@stable"
     },
     "autoload": {
-        "files": ["autoloader.php"]
+        "psr-4": {
+            "mageekguy\\atoum\\phpunit\\": "classes"
+        },
+        "classmap": [ "phpunit/" ],
+        "files": ["configuration.php"]
     },
     "extra": {
         "branch-alias": {

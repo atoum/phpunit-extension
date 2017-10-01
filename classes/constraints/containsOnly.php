@@ -2,6 +2,13 @@
 
 namespace mageekguy\atoum\phpunit\constraints;
 
+use mageekguy\atoum\asserters\boolean;
+use mageekguy\atoum\asserters\integer;
+use mageekguy\atoum\asserters\phpArray;
+use mageekguy\atoum\asserters\phpFloat;
+use mageekguy\atoum\asserters\phpObject;
+use mageekguy\atoum\asserters\phpString;
+use mageekguy\atoum\asserters\variable;
 use
 	mageekguy\atoum\phpunit\constraint,
 	mageekguy\atoum\exceptions,
@@ -51,7 +58,6 @@ class containsOnly extends constraint
 
 	private static function getAssertion($type)
 	{
-		$namespace = 'mageekguy\atoum\asserters';
 		$assertion = null;
 		$transform = null;
 		$expected = null;
@@ -59,27 +65,27 @@ class containsOnly extends constraint
 		switch ($type)
 		{
 			case 'int':
-				$classname = $namespace . '\\integer';
+				$classname = integer::class;
 				break;
 
 			case 'float':
-				$classname = $namespace . '\\phpFloat';
+				$classname = phpFloat::class;
 				break;
 
 			case 'bool':
-				$classname = $namespace . '\\boolean';
+				$classname = boolean::class;
 				break;
 
 			case 'string':
-				$classname = $namespace . '\\phpString';
+				$classname = phpString::class;
 				break;
 
 			case 'array':
-				$classname = $namespace . '\\phpArray';
+				$classname = phpArray::class;
 				break;
 
 			case 'null':
-				$classname = $namespace . '\\variable';
+				$classname = variable::class;
 				$assertion = 'isNull';
 				break;
 
@@ -88,7 +94,7 @@ class containsOnly extends constraint
 			case 'double':
 			case 'real':
 			case 'callable':
-				$classname = $namespace . '\\boolean';
+				$classname = boolean::class;
 				$transform = 'is_' . $type;
 				$assertion = 'isTrue';
 				break;
@@ -96,11 +102,11 @@ class containsOnly extends constraint
 			case 'boolean':
 			case 'integer':
 			case 'resource':
-				$classname = $namespace . '\\' . $type;
+				$classname = 'mageekguy\atoum\asserters\\' . $type;
 				break;
 
 			default:
-				$classname = $namespace . '\\object';
+				$classname = phpObject::class;
 
 				if ($type !== 'object') {
 					$assertion = 'isInstanceOf';
