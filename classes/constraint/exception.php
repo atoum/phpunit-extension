@@ -2,4 +2,6 @@
 
 namespace mageekguy\atoum\phpunit\constraint;
 
-class exception extends \runtimeException {}
+class exception extends \runtimeException
+{
+}

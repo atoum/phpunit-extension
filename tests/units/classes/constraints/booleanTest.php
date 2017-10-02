@@ -2,87 +2,73 @@
 
 namespace mageekguy\atoum\phpunit\tests\units\constraints;
 
-use
-	mageekguy\atoum,
-	mageekguy\atoum\phpunit\constraints\boolean as testedClass
-;
+use mageekguy\atoum;
+use mageekguy\atoum\phpunit\constraints\boolean as testedClass;
 
 class boolean extends \PHPUnit\Framework\TestCase
 {
-	public function testClass()
-	{
-		$this->assertInstanceOf('mageekguy\atoum\phpunit\constraint', new testedClass(true));
-	}
+    public function testClass()
+    {
+        $this->assertInstanceOf('mageekguy\atoum\phpunit\constraint', new testedClass(true));
+    }
 
-	public function testThrowsExceptionIfExpectedCountIsNoBoolean()
-	{
-		$constraint = new testedClass(array());
+    public function testThrowsExceptionIfExpectedCountIsNoBoolean()
+    {
+        $constraint = new testedClass([]);
 
-		try
-		{
-			$constraint->evaluate(true);
+        try {
+            $constraint->evaluate(true);
 
-			$this->fail();
-		}
-		catch (\PHPUnit\Framework\Exception $exception)
-		{
-			$this->assertEquals('Expected value of mageekguy\atoum\phpunit\constraints\boolean must be a boolean', $exception->getMessage());
-		}
-	}
+            $this->fail();
+        } catch (\PHPUnit\Framework\Exception $exception) {
+            $this->assertEquals('Expected value of mageekguy\atoum\phpunit\constraints\boolean must be a boolean', $exception->getMessage());
+        }
+    }
 
-	public function testFailsIfActualIsNoBoolean()
-	{
-		$constraint = new testedClass(true);
-		$actual = array();
+    public function testFailsIfActualIsNoBoolean()
+    {
+        $constraint = new testedClass(true);
+        $actual = [];
 
-		try
-		{
-			$constraint->evaluate($actual);
+        try {
+            $constraint->evaluate($actual);
 
-			$this->fail();
-		}
-		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
-		{
-			$analyzer = new atoum\tools\variable\analyzer();
-			$this->assertEquals($analyzer->getTypeOf($actual) . ' is not a boolean', $exception->getMessage());
-		}
-	}
+            $this->fail();
+        } catch (\PHPUnit\Framework\ExpectationFailedException $exception) {
+            $analyzer = new atoum\tools\variable\analyzer();
+            $this->assertEquals($analyzer->getTypeOf($actual) . ' is not a boolean', $exception->getMessage());
+        }
+    }
 
-	public function testFails()
-	{
-		$constraint = new testedClass(true);
+    public function testFails()
+    {
+        $constraint = new testedClass(true);
 
-		try
-		{
-			$constraint->evaluate(false);
-		}
-		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
-		{
-			$analyzer = new atoum\tools\variable\analyzer();
-			$diff = new atoum\tools\diff($analyzer->dump(true), $analyzer->dump(false));
-			$this->assertEquals($analyzer->getTypeOf(false) . ' is not true' . PHP_EOL . $diff, $exception->getMessage());
-		}
+        try {
+            $constraint->evaluate(false);
+        } catch (\PHPUnit\Framework\ExpectationFailedException $exception) {
+            $analyzer = new atoum\tools\variable\analyzer();
+            $diff = new atoum\tools\diff($analyzer->dump(true), $analyzer->dump(false));
+            $this->assertEquals($analyzer->getTypeOf(false) . ' is not true' . PHP_EOL . $diff, $exception->getMessage());
+        }
 
-		$constraint = new testedClass(false);
+        $constraint = new testedClass(false);
 
-		try
-		{
-			$constraint->evaluate(true);
-		}
-		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
-		{
-			$analyzer = new atoum\tools\variable\analyzer();
-			$diff = new atoum\tools\diff($analyzer->dump(false), $analyzer->dump(true));
-			$this->assertEquals($analyzer->getTypeOf(true) . ' is not false' . PHP_EOL . $diff, $exception->getMessage());
-		}
-	}
+        try {
+            $constraint->evaluate(true);
+        } catch (\PHPUnit\Framework\ExpectationFailedException $exception) {
+            $analyzer = new atoum\tools\variable\analyzer();
+            $diff = new atoum\tools\diff($analyzer->dump(false), $analyzer->dump(true));
+            $this->assertEquals($analyzer->getTypeOf(true) . ' is not false' . PHP_EOL . $diff, $exception->getMessage());
+        }
+    }
 
-	public function testPasses()
-	{
-		$constraint = new testedClass(true);
-		$this->assertSame($constraint, $constraint->evaluate(true));
+    public function testPasses()
+    {
+        $constraint = new testedClass(true);
+        $this->assertSame($constraint, $constraint->evaluate(true));
 
-		$constraint = new testedClass(false);
-		$this->assertSame($constraint, $constraint->evaluate(false));
-	}
+        $constraint = new testedClass(false);
+        $this->assertSame($constraint, $constraint->evaluate(false));
+    }
 }

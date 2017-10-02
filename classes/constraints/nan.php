@@ -2,35 +2,29 @@
 
 namespace mageekguy\atoum\phpunit\constraints;
 
-use
-	mageekguy\atoum\asserters,
-	mageekguy\atoum\phpunit\constraint,
-	mageekguy\atoum\tools\variable\analyzer,
-	mageekguy\atoum\asserter\exception
-;
+use mageekguy\atoum\asserter\exception;
+use mageekguy\atoum\asserters;
+use mageekguy\atoum\phpunit\constraint;
+use mageekguy\atoum\tools\variable\analyzer;
 
 class nan extends constraint
 {
-	private $analyzer;
+    private $analyzer;
 
-	public function __construct($description = null, analyzer $analyzer = null)
-	{
-		$this->description = $description;
-		$this->analyzer = $analyzer ?: new analyzer();
-	}
+    public function __construct($description = null, analyzer $analyzer = null)
+    {
+        $this->description = $description;
+        $this->analyzer = $analyzer ?: new analyzer();
+    }
 
-	protected function matches($actual)
-	{
-		$asserter = new asserters\boolean();
+    protected function matches($actual)
+    {
+        $asserter = new asserters\boolean();
 
-		try
-		{
-			$asserter->setWith(is_nan($actual))->isTrue();
-		}
-		catch (exception $exception)
-		{
-			throw new exception($asserter, $this->analyzer->getTypeOf($actual) . ' is not NaN');
-		}
-
-	}
+        try {
+            $asserter->setWith(is_nan($actual))->isTrue();
+        } catch (exception $exception) {
+            throw new exception($asserter, $this->analyzer->getTypeOf($actual) . ' is not NaN');
+        }
+    }
 }

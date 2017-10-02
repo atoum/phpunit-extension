@@ -16,7 +16,9 @@ namespace mageekguy\atoum\phpunit
 
     class passingConstraint extends constraint
     {
-        protected function matches($actual) { }
+        protected function matches($actual)
+        {
+        }
     }
 }
 
@@ -32,14 +34,11 @@ namespace mageekguy\atoum\phpunit\tests\units
             $constraint = new failingConstraint();
             $message = uniqid();
 
-            try
-            {
+            try {
                 $constraint->evaluate(uniqid(), $message);
 
                 $this->fail();
-            }
-            catch (\PHPUnit\Framework\ExpectationFailedException $exception)
-            {
+            } catch (\PHPUnit\Framework\ExpectationFailedException $exception) {
                 $this->assertEquals($message, $exception->getMessage());
             }
 

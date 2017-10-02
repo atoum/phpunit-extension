@@ -2,35 +2,30 @@
 
 namespace mageekguy\atoum\phpunit\tests\units\constraints;
 
-use
-	mageekguy\atoum,
-	mageekguy\atoum\phpunit\constraints\nan as testedClass
-;
+use mageekguy\atoum;
+use mageekguy\atoum\phpunit\constraints\nan as testedClass;
 
 class nan extends \PHPUnit\Framework\TestCase
 {
-	public function testClass()
-	{
-		$this->assertInstanceOf('mageekguy\atoum\phpunit\constraint', new testedClass());
-	}
+    public function testClass()
+    {
+        $this->assertInstanceOf('mageekguy\atoum\phpunit\constraint', new testedClass());
+    }
 
-	public function testAssertNan()
-	{
-		$constraint = new testedClass();
-		$this->assertSame($constraint, $constraint->evaluate(NAN));
+    public function testAssertNan()
+    {
+        $constraint = new testedClass();
+        $this->assertSame($constraint, $constraint->evaluate(NAN));
 
-		$actual = rand(0, PHP_INT_MAX);
+        $actual = rand(0, PHP_INT_MAX);
 
-		try
-		{
-			$constraint->evaluate($actual);
+        try {
+            $constraint->evaluate($actual);
 
-			$this->fail();
-		}
-		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
-		{
-			$analyzer = new atoum\tools\variable\analyzer();
-			$this->assertEquals($analyzer->getTypeOf($actual) . ' is not NaN', $exception->getMessage());
-		}
-	}
+            $this->fail();
+        } catch (\PHPUnit\Framework\ExpectationFailedException $exception) {
+            $analyzer = new atoum\tools\variable\analyzer();
+            $this->assertEquals($analyzer->getTypeOf($actual) . ' is not NaN', $exception->getMessage());
+        }
+    }
 }
