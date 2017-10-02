@@ -3,13 +3,7 @@
 namespace mageekguy\atoum\phpunit\constraints;
 
 use PHPUnit;
-use mageekguy\atoum\asserters\boolean;
-use mageekguy\atoum\asserters\integer;
-use mageekguy\atoum\asserters\phpArray;
-use mageekguy\atoum\asserters\phpFloat;
-use mageekguy\atoum\asserters\phpObject;
-use mageekguy\atoum\asserters\phpString;
-use mageekguy\atoum\asserters\variable;
+use mageekguy\atoum\asserters;
 use mageekguy\atoum\phpunit\constraint;
 use mgeekguy\atoum\exceptions;
 use mageekguy\atoum\tools\variable\analyzer;
@@ -64,27 +58,27 @@ class containsOnly extends constraint
 		switch ($type)
 		{
 			case 'int':
-				$classname = integer::class;
+				$classname = asserters\integer::class;
 				break;
 
 			case 'float':
-				$classname = phpFloat::class;
+				$classname = asserters\phpFloat::class;
 				break;
 
 			case 'bool':
-				$classname = boolean::class;
+				$classname = asserters\boolean::class;
 				break;
 
 			case 'string':
-				$classname = phpString::class;
+				$classname = asserters\phpString::class;
 				break;
 
 			case 'array':
-				$classname = phpArray::class;
+				$classname = asserters\phpArray::class;
 				break;
 
 			case 'null':
-				$classname = variable::class;
+				$classname = asserters\variable::class;
 				$assertion = 'isNull';
 				break;
 
@@ -93,7 +87,7 @@ class containsOnly extends constraint
 			case 'double':
 			case 'real':
 			case 'callable':
-				$classname = boolean::class;
+				$classname = asserters\boolean::class;
 				$transform = 'is_' . $type;
 				$assertion = 'isTrue';
 				break;
@@ -105,7 +99,7 @@ class containsOnly extends constraint
 				break;
 
 			default:
-				$classname = phpObject::class;
+				$classname = asserters\phpObject::class;
 
 				if ($type !== 'object') {
 					$assertion = 'isInstanceOf';
