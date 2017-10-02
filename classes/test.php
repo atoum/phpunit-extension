@@ -22,7 +22,7 @@ abstract class test extends atoum\test
 		parent::__construct($adapter, $annotationExtractor, $asserterGenerator, $assertionManager, $reflectionClassFactory, $phpExtensionFactory, $analyzer);
 
 		$this
-			->setDefaultEngine(self::defaultEngine)
+			->setDefaultEngine(static::defaultEngine)
 		;
 	}
 
