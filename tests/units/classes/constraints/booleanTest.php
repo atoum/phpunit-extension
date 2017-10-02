@@ -7,7 +7,7 @@ use
 	mageekguy\atoum\phpunit\constraints\boolean as testedClass
 ;
 
-class boolean extends \PHPUnit_Framework_TestCase
+class boolean extends \PHPUnit\Framework\TestCase
 {
 	public function testClass()
 	{
@@ -24,7 +24,7 @@ class boolean extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_Exception $exception)
+		catch (\PHPUnit\Framework\Exception $exception)
 		{
 			$this->assertEquals('Expected value of mageekguy\atoum\phpunit\constraints\boolean must be a boolean', $exception->getMessage());
 		}
@@ -41,7 +41,7 @@ class boolean extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$this->assertEquals($analyzer->getTypeOf($actual) . ' is not a boolean', $exception->getMessage());
@@ -56,7 +56,7 @@ class boolean extends \PHPUnit_Framework_TestCase
 		{
 			$constraint->evaluate(false);
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$diff = new atoum\tools\diff($analyzer->dump(true), $analyzer->dump(false));
@@ -69,7 +69,7 @@ class boolean extends \PHPUnit_Framework_TestCase
 		{
 			$constraint->evaluate(true);
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$diff = new atoum\tools\diff($analyzer->dump(false), $analyzer->dump(true));

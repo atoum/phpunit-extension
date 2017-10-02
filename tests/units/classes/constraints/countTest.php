@@ -7,7 +7,7 @@ use
 	mageekguy\atoum\phpunit\constraints\count as testedClass
 ;
 
-class count extends \PHPUnit_Framework_TestCase
+class count extends \PHPUnit\Framework\TestCase
 {
 	public function testClass()
 	{
@@ -25,7 +25,7 @@ class count extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$this->assertEquals('array(3) has size 3, expected size 2', $exception->getMessage());
 		}
@@ -42,7 +42,7 @@ class count extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$diff = new atoum\tools\diff($analyzer->dump(2), $analyzer->dump(3));
@@ -60,7 +60,7 @@ class count extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_Exception $exception)
+		catch (\PHPUnit\Framework\Exception $exception)
 		{
 			$this->assertEquals('Expected value of mageekguy\atoum\phpunit\constraints\count must be an integer', $exception->getMessage());
 		}
@@ -76,7 +76,7 @@ class count extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_Exception $exception)
+		catch (\PHPUnit\Framework\Exception $exception)
 		{
 			$this->assertEquals('Actual value of mageekguy\atoum\phpunit\constraints\count must be an array, a countable object or a traversable object', $exception->getMessage());
 		}

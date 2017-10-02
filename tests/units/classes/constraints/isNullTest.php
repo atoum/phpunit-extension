@@ -7,7 +7,7 @@ use
 	mageekguy\atoum\phpunit\constraints\isNull as testedClass
 ;
 
-class isNull extends \PHPUnit_Framework_TestCase
+class isNull extends \PHPUnit\Framework\TestCase
 {
 	public function testClass()
 	{
@@ -25,7 +25,7 @@ class isNull extends \PHPUnit_Framework_TestCase
 		{
 			$constraint->evaluate($actual);
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 

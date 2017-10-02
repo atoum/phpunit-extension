@@ -13,7 +13,7 @@ require_once __DIR__ . '/../../../../vendor/phpunit/phpunit/tests/_files/ClassWi
 require_once __DIR__ . '/../../../../vendor/phpunit/phpunit/tests/_files/SampleClass.php';
 require_once __DIR__ . '/../../../../vendor/phpunit/phpunit/tests/_files/Struct.php';
 
-class equals extends \PHPUnit_Framework_TestCase
+class equals extends \PHPUnit\Framework\TestCase
 {
 	public function testClass()
 	{

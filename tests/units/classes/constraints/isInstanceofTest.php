@@ -7,7 +7,7 @@ use
 	mageekguy\atoum\phpunit\constraints\isInstanceOf as testedClass
 ;
 
-class isInstanceOf extends \PHPUnit_Framework_TestCase
+class isInstanceOf extends \PHPUnit\Framework\TestCase
 {
 	public function testClass()
 	{
@@ -25,7 +25,7 @@ class isInstanceOf extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$this->assertEquals('object(Exception) is not an instance of stdClass', $exception->getMessage());
 		}
@@ -41,7 +41,7 @@ class isInstanceOf extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_Exception $exception)
+		catch (\PHPUnit\Framework\Exception $exception)
 		{
 			$this->assertEquals('Argument of mageekguy\atoum\asserters\phpObject::isInstanceOf() must be a class instance or a class name', $exception->getMessage());
 		}

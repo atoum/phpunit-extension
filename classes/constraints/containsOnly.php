@@ -2,6 +2,7 @@
 
 namespace mageekguy\atoum\phpunit\constraints;
 
+use PHPUnit;
 use mageekguy\atoum\asserters\boolean;
 use mageekguy\atoum\asserters\integer;
 use mageekguy\atoum\asserters\phpArray;
@@ -9,11 +10,9 @@ use mageekguy\atoum\asserters\phpFloat;
 use mageekguy\atoum\asserters\phpObject;
 use mageekguy\atoum\asserters\phpString;
 use mageekguy\atoum\asserters\variable;
-use
-	mageekguy\atoum\phpunit\constraint,
-	mageekguy\atoum\exceptions,
-	mageekguy\atoum\tools\variable\analyzer
-;
+use mageekguy\atoum\phpunit\constraint;
+use mgeekguy\atoum\exceptions;
+use mageekguy\atoum\tools\variable\analyzer;
 
 class containsOnly extends constraint
 {
@@ -33,12 +32,12 @@ class containsOnly extends constraint
 	{
 		if (self::isType($this->expected) === false)
 		{
-			throw new \PHPUnit_Framework_Exception('Expected value of ' . __CLASS__ . ' must be a valid type or class name');
+			throw new PHPUnit\Framework\Exception('Expected value of ' . __CLASS__ . ' must be a valid type or class name');
 		}
 
 		if ($this->analyzer->isArray($actual) === false && $actual instanceof \traversable === false)
 		{
-			throw new \PHPUnit_Framework_Exception('Actual value of ' . __CLASS__ . ' must be an array or a traversable object');
+			throw new PHPUnit\Framework\Exception('Actual value of ' . __CLASS__ . ' must be an array or a traversable object');
 		}
 
 		try
@@ -52,7 +51,7 @@ class containsOnly extends constraint
 		}
 		catch (exceptions\logic $exception)
 		{
-			throw new \PHPUnit_Framework_Exception('Expected value of ' . __CLASS__ . ' must be a class instance or class name');
+			throw new PHPUnit\Framework\Exception('Expected value of ' . __CLASS__ . ' must be a class instance or class name');
 		}
 	}
 
@@ -128,7 +127,7 @@ class containsOnly extends constraint
 			}
 			catch (exceptions\logic $exception)
 			{
-				throw new \PHPUnit_Framework_Exception('Expected value of ' . __CLASS__ . ' must be a valid type or class name');
+				throw new PHPUnit\Framework\Exception('Expected value of ' . __CLASS__ . ' must be a valid type or class name');
 			}
 
 			if ($assertion !== null)

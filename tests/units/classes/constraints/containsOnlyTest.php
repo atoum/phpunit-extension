@@ -9,7 +9,7 @@ use
 
 require_once __DIR__ . '/../../../../vendor/phpunit/phpunit/tests/_files/SampleArrayAccess.php';
 
-class containsOnly extends \PHPUnit_Framework_TestCase
+class containsOnly extends \PHPUnit\Framework\TestCase
 {
 	public function testClass()
 	{
@@ -24,7 +24,7 @@ class containsOnly extends \PHPUnit_Framework_TestCase
 		{
 			$constraint->evaluate(array(rand(0, PHP_INT_MAX)));
 		}
-		catch (\PHPUnit_Framework_Exception $exception)
+		catch (\PHPUnit\Framework\Exception $exception)
 		{
 			$this->assertEquals('Expected value of mageekguy\atoum\phpunit\constraints\containsOnly must be a valid type or class name', $exception->getMessage());
 		}
@@ -35,7 +35,7 @@ class containsOnly extends \PHPUnit_Framework_TestCase
 		{
 			$constraint->evaluate(array(rand(0, PHP_INT_MAX)));
 		}
-		catch (\PHPUnit_Framework_Exception $exception)
+		catch (\PHPUnit\Framework\Exception $exception)
 		{
 			$this->assertEquals('Expected value of mageekguy\atoum\phpunit\constraints\containsOnly must be a valid type or class name', $exception->getMessage());
 		}
@@ -46,7 +46,7 @@ class containsOnly extends \PHPUnit_Framework_TestCase
 		{
 			$constraint->evaluate(null);
 		}
-		catch (\PHPUnit_Framework_Exception $exception)
+		catch (\PHPUnit\Framework\Exception $exception)
 		{
 			$this->assertEquals('Actual value of mageekguy\atoum\phpunit\constraints\containsOnly must be an array or a traversable object', $exception->getMessage());
 		}
@@ -65,7 +65,7 @@ class containsOnly extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$this->assertEquals($analyzer->getTypeOf($actual[0]) . ' is not an integer', $exception->getMessage());
@@ -85,7 +85,7 @@ class containsOnly extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$this->assertEquals($analyzer->getTypeOf($actual[0]) . ' is not an object', $exception->getMessage());

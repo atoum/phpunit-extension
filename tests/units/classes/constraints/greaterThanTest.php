@@ -7,7 +7,7 @@ use
 	mageekguy\atoum\phpunit\constraints\greaterThan as testedClass
 ;
 
-class greaterThan extends \PHPUnit_Framework_TestCase
+class greaterThan extends \PHPUnit\Framework\TestCase
 {
 	public function testClass()
 	{
@@ -28,7 +28,7 @@ class greaterThan extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$this->assertEquals($analyzer->getTypeOf($actual) . ' is not greater than ' . $analyzer->getTypeOf($expected), $exception->getMessage());
@@ -49,7 +49,7 @@ class greaterThan extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$this->assertEquals($analyzer->getTypeOf($actual) . ' is not greater than ' . $analyzer->getTypeOf($expected), $exception->getMessage());

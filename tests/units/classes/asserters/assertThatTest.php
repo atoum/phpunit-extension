@@ -7,7 +7,7 @@ use
 	mageekguy\atoum\phpunit\asserters\assertThat as testedClass
 ;
 
-class assertThat extends \PHPUnit_Framework_TestCase
+class assertThat extends \PHPUnit\Framework\TestCase
 {
 	public function testClass()
 	{

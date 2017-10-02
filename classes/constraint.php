@@ -2,6 +2,7 @@
 
 namespace mageekguy\atoum\phpunit;
 
+use PHPUnit;
 use mageekguy\atoum\asserter\exception;
 
 abstract class constraint
@@ -35,7 +36,7 @@ abstract class constraint
 
 	protected function fail($actual, $message)
 	{
-		throw new \PHPUnit_Framework_ExpectationFailedException($message);
+		throw new PHPUnit\Framework\ExpectationFailedException($message);
 	}
 
 	private function doesMatch($actual)

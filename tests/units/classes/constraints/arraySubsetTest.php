@@ -7,7 +7,7 @@ use
 	mageekguy\atoum\phpunit\constraints\arraySubset as testedClass
 ;
 
-class arraySubset extends \PHPUnit_Framework_TestCase
+class arraySubset extends \PHPUnit\Framework\TestCase
 {
 	public function testClass()
 	{
@@ -40,7 +40,7 @@ class arraySubset extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$patched = array_replace_recursive($array, $expected);
 			$diff = new atoum\tools\diffs\variable($patched, $array);
@@ -56,7 +56,7 @@ class arraySubset extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$patched = array_replace_recursive($array, $expected);
 			$diff = new atoum\tools\diffs\variable($patched, $array);
@@ -98,7 +98,7 @@ class arraySubset extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$patched = array_replace_recursive($array, $expected);
 			$diff = new atoum\tools\diffs\variable($patched, $array);
@@ -138,7 +138,7 @@ class arraySubset extends \PHPUnit_Framework_TestCase
 
 			$this->fail('Strict recursive array check fail.');
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$patched = array_replace_recursive($array, $expected);
 			$diff = new atoum\tools\diffs\variable($patched, $array);
@@ -160,7 +160,7 @@ class arraySubset extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_Exception $exception)
+		catch (\PHPUnit\Framework\Exception $exception)
 		{
 			$this->assertEquals('Actual value of mageekguy\atoum\phpunit\constraints\arraySubset must be an array', $exception->getMessage());
 		}

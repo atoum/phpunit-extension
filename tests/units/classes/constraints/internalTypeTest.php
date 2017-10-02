@@ -7,7 +7,7 @@ use
 	mageekguy\atoum\phpunit\constraints\internalType as testedClass
 ;
 
-class internalType extends \PHPUnit_Framework_TestCase
+class internalType extends \PHPUnit\Framework\TestCase
 {
 	public function testClass()
 	{
@@ -27,7 +27,7 @@ class internalType extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$this->assertEquals($analyzer->getTypeOf($actual) . ' is not an integer', $exception->getMessage());
@@ -47,7 +47,7 @@ class internalType extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$diff = new atoum\tools\diffs\variable(true, false);
@@ -65,7 +65,7 @@ class internalType extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_Exception $exception)
+		catch (\PHPUnit\Framework\Exception $exception)
 		{
 			$this->assertEquals('Expected value of mageekguy\atoum\phpunit\constraints\internalType must be a valid type', $exception->getMessage());
 		}

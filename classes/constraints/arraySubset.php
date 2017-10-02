@@ -2,6 +2,7 @@
 
 namespace mageekguy\atoum\phpunit\constraints;
 
+use PHPUnit;
 use
 	mageekguy\atoum\asserters,
 	mageekguy\atoum\phpunit\constraint,
@@ -26,7 +27,7 @@ class arraySubset extends constraint
 	{
 		if ($this->analyzer->isArray($actual) === false)
 		{
-			throw new \PHPUnit_Framework_Exception('Actual value of ' . __CLASS__ . ' must be an array');
+			throw new PHPUnit\Framework\Exception('Actual value of ' . __CLASS__ . ' must be an array');
 		}
 
 		$patched = array_replace_recursive($actual, $this->expected);

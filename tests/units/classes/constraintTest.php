@@ -25,7 +25,7 @@ namespace mageekguy\atoum\phpunit\tests\units
     use mageekguy\atoum\phpunit\failingConstraint;
     use mageekguy\atoum\phpunit\passingConstraint;
 
-    class constraint extends \PHPUnit_Framework_TestCase
+    class constraint extends \PHPUnit\Framework\TestCase
     {
         public function testEvaluate()
         {
@@ -38,7 +38,7 @@ namespace mageekguy\atoum\phpunit\tests\units
 
                 $this->fail();
             }
-            catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+            catch (\PHPUnit\Framework\ExpectationFailedException $exception)
             {
                 $this->assertEquals($message, $exception->getMessage());
             }

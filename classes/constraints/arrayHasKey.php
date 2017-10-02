@@ -2,6 +2,7 @@
 
 namespace mageekguy\atoum\phpunit\constraints;
 
+use PHPUnit;
 use
 	mageekguy\atoum\asserter\exception,
 	mageekguy\atoum\asserters,
@@ -25,12 +26,12 @@ class arrayHasKey extends constraint
 	{
 		if (is_null($this->expected))
 		{
-			throw new \PHPUnit_Framework_Exception('Expected value of ' . __CLASS__ . ' must not be null');
+			throw new PHPUnit\Framework\Exception('Expected value of ' . __CLASS__ . ' must not be null');
 		}
 
 		if ($this->analyzer->isArray($actual) === false && $actual instanceof \arrayAccess === false)
 		{
-			throw new \PHPUnit_Framework_Exception('Actual value of ' . __CLASS__ . ' must be an array or an arrayAccess instance');
+			throw new PHPUnit\Framework\Exception('Actual value of ' . __CLASS__ . ' must be an array or an arrayAccess instance');
 		}
 
 		if ($this->analyzer->isArray($actual))

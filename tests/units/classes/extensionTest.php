@@ -7,7 +7,7 @@ use
 	mageekguy\atoum\phpunit\extension as testedClass
 ;
 
-class extension extends \PHPUnit_Framework_TestCase
+class extension extends \PHPUnit\Framework\TestCase
 {
 	public function testClass()
 	{

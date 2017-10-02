@@ -9,7 +9,7 @@ use
 
 require_once __DIR__ . '/../../../../vendor/phpunit/phpunit/tests/_files/TestIterator.php';
 
-class contains extends \PHPUnit_Framework_TestCase
+class contains extends \PHPUnit\Framework\TestCase
 {
 	public function testClass()
 	{
@@ -34,7 +34,7 @@ class contains extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$this->assertEquals($analyzer->getTypeOf($actual) . ' does not contain ' . $analyzer->getTypeOf($expected), $exception->getMessage());
@@ -57,7 +57,7 @@ class contains extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$this->assertEquals($analyzer->getTypeOf($actual) . ' does not contain ' . $analyzer->getTypeOf($expected), $exception->getMessage());
@@ -78,7 +78,7 @@ class contains extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$this->assertEquals($analyzer->getTypeOf($actual) . ' does not contain ' . $analyzer->getTypeOf($expected), $exception->getMessage());
@@ -100,7 +100,7 @@ class contains extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$this->assertEquals($analyzer->getTypeOf($actual) . ' does not contain ' . $analyzer->getTypeOf($expected), $exception->getMessage());
@@ -115,7 +115,7 @@ class contains extends \PHPUnit_Framework_TestCase
 		{
 			$constraint->evaluate(null);
 		}
-		catch (\PHPUnit_Framework_Exception $exception)
+		catch (\PHPUnit\Framework\Exception $exception)
 		{
 			$this->assertEquals('Actual value of mageekguy\atoum\phpunit\constraints\contains must be an array, a string or a traversable object', $exception->getMessage());
 		}
@@ -135,7 +135,7 @@ class contains extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$this->assertEquals($analyzer->getTypeOf($actual) . ' does not contain ' . $analyzer->getTypeOf($expected), $exception->getMessage());
@@ -156,7 +156,7 @@ class contains extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$this->assertEquals($analyzer->getTypeOf($actual) . ' does not contain ' . $analyzer->getTypeOf($expected), $exception->getMessage());
@@ -177,7 +177,7 @@ class contains extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$this->assertEquals($analyzer->getTypeOf($actual) . ' does not contain ' . $analyzer->getTypeOf($expected), $exception->getMessage());

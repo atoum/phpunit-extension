@@ -2,11 +2,11 @@
 
 namespace mageekguy\atoum\phpunit\constraints;
 
+use PHPUnit;
 use
 	mageekguy\atoum\asserters,
 	mageekguy\atoum\phpunit\constraint,
-	mageekguy\atoum\tools\variable\analyzer
-;
+	mageekguy\atoum\tools\variable\analyzer;
 
 class boolean extends constraint
 {
@@ -24,7 +24,7 @@ class boolean extends constraint
 	{
 		if ($this->analyzer->isBoolean($this->expected) === false)
 		{
-			throw new \PHPUnit_Framework_Exception('Expected value of ' . __CLASS__ . ' must be a boolean');
+			throw new PHPUnit\Framework\Exception('Expected value of ' . __CLASS__ . ' must be a boolean');
 		}
 
 		$asserter = new asserters\boolean(null, $this->analyzer);

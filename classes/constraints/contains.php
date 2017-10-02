@@ -2,12 +2,12 @@
 
 namespace mageekguy\atoum\phpunit\constraints;
 
+use PHPUnit;
 use
 	mageekguy\atoum\asserter\exception,
 	mageekguy\atoum\asserters,
 	mageekguy\atoum\phpunit\constraint,
-	mageekguy\atoum\tools\variable\analyzer
-;
+	mageekguy\atoum\tools\variable\analyzer;
 
 class contains extends constraint
 {
@@ -56,7 +56,7 @@ class contains extends constraint
 				break;
 
 			default:
-				throw new \PHPUnit_Framework_Exception('Actual value of ' . __CLASS__ . ' must be an array, a string or a traversable object');
+				throw new PHPUnit\Framework\Exception('Actual value of ' . __CLASS__ . ' must be an array, a string or a traversable object');
 		}
 
 		try

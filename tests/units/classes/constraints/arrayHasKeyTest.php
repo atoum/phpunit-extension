@@ -9,7 +9,7 @@ use
 
 require_once __DIR__ . '/../../../../vendor/phpunit/phpunit/tests/_files/SampleArrayAccess.php';
 
-class arrayHasKey extends \PHPUnit_Framework_TestCase
+class arrayHasKey extends \PHPUnit\Framework\TestCase
 {
 	public function testClass()
 	{
@@ -26,7 +26,7 @@ class arrayHasKey extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_Exception $exception)
+		catch (\PHPUnit\Framework\Exception $exception)
 		{
 			$this->assertEquals('Expected value of mageekguy\atoum\phpunit\constraints\arrayHasKey must not be null', $exception->getMessage());
 		}
@@ -42,7 +42,7 @@ class arrayHasKey extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_Exception $exception)
+		catch (\PHPUnit\Framework\Exception $exception)
 		{
 			$this->assertEquals('Actual value of mageekguy\atoum\phpunit\constraints\arrayHasKey must be an array or an arrayAccess instance', $exception->getMessage());
 		}
@@ -63,7 +63,7 @@ class arrayHasKey extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$this->assertEquals('array(1) has no key integer(1)', $exception->getMessage());
 		}
@@ -86,7 +86,7 @@ class arrayHasKey extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$this->assertEquals('array(1) has no key string(' . strlen($otherKey) . ') \'' . $otherKey . '\'', $exception->getMessage());
 		}
@@ -110,7 +110,7 @@ class arrayHasKey extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$this->assertEquals('object(SampleArrayAccess) has no key string(' . strlen($otherKey) . ') \'' . $otherKey . '\'', $exception->getMessage());
 		}

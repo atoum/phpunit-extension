@@ -2,6 +2,7 @@
 
 namespace mageekguy\atoum\phpunit\constraints;
 
+use PHPUnit;
 use
 	mageekguy\atoum\asserters,
 	mageekguy\atoum\exceptions\logic,
@@ -26,7 +27,7 @@ class internalType extends constraint
 	{
 		if (self::isType($this->expected) === false)
 		{
-			throw new \PHPUnit_Framework_Exception('Expected value of ' . __CLASS__ . ' must be a valid type');
+			throw new PHPUnit\Framework\Exception('Expected value of ' . __CLASS__ . ' must be a valid type');
 		}
 
 		$assertion = self::getAssertion($this->expected, $this->analyzer);
@@ -108,7 +109,7 @@ class internalType extends constraint
 			}
 			catch (exceptions\logic $exception)
 			{
-				throw new \PHPUnit_Framework_Exception('Expected value of ' . __CLASS__ . ' must be a valid type or class name');
+				throw new PHPUnit\Framework\Exception('Expected value of ' . __CLASS__ . ' must be a valid type or class name');
 			}
 
 			if ($assertion !== null)

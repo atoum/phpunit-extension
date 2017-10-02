@@ -2,11 +2,11 @@
 
 namespace mageekguy\atoum\phpunit\constraints;
 
+use PHPUnit;
 use
 	mageekguy\atoum\asserters,
 	mageekguy\atoum\phpunit\constraint,
-	mageekguy\atoum\tools\variable\analyzer
-;
+	mageekguy\atoum\tools\variable\analyzer;
 
 class count extends constraint
 {
@@ -24,7 +24,7 @@ class count extends constraint
 	{
 		if ($this->analyzer->isInteger($this->expected) === false)
 		{
-			throw new \PHPUnit_Framework_Exception('Expected value of ' . __CLASS__ . ' must be an integer');
+			throw new PHPUnit\Framework\Exception('Expected value of ' . __CLASS__ . ' must be an integer');
 		}
 
 		switch (true)
@@ -51,7 +51,7 @@ class count extends constraint
 				break;
 
 			default:
-				throw new \PHPUnit_Framework_Exception('Actual value of ' . __CLASS__ . ' must be an array, a countable object or a traversable object');
+				throw new PHPUnit\Framework\Exception('Actual value of ' . __CLASS__ . ' must be an array, a countable object or a traversable object');
 		}
 	}
 }

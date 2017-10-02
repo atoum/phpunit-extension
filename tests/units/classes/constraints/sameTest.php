@@ -13,7 +13,7 @@ require_once __DIR__ . '/../../../../vendor/phpunit/phpunit/tests/_files/ClassWi
 require_once __DIR__ . '/../../../../vendor/phpunit/phpunit/tests/_files/SampleClass.php';
 require_once __DIR__ . '/../../../../vendor/phpunit/phpunit/tests/_files/Struct.php';
 
-class same extends \PHPUnit_Framework_TestCase
+class same extends \PHPUnit\Framework\TestCase
 {
 	public function testClass()
 	{
@@ -42,9 +42,9 @@ class same extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
-			$this->assertInstanceOf('PHPUnit_Framework_ExpectationFailedException', $exception);
+			$this->assertInstanceOf('PHPUnit\Framework\ExpectationFailedException', $exception);
 		}
 	}
 

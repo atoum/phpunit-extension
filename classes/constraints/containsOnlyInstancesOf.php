@@ -2,6 +2,7 @@
 
 namespace mageekguy\atoum\phpunit\constraints;
 
+use PHPUnit;
 use
 	mageekguy\atoum\phpunit\constraint,
 	mageekguy\atoum\exceptions,
@@ -25,7 +26,7 @@ class containsOnlyInstancesOf extends constraint
 	{
 		if ($this->analyzer->isArray($actual) === false && $actual instanceof \traversable === false)
 		{
-			throw new \PHPUnit_Framework_Exception('Actual value of ' . __CLASS__ . ' must be an array or a traversable object');
+			throw new PHPUnit\Framework\Exception('Actual value of ' . __CLASS__ . ' must be an array or a traversable object');
 		}
 
 		try
@@ -39,7 +40,7 @@ class containsOnlyInstancesOf extends constraint
 		}
 		catch (exceptions\logic $exception)
 		{
-			throw new \PHPUnit_Framework_Exception('Expected value of ' . __CLASS__ . ' must be a class instance or class name');
+			throw new PHPUnit\Framework\Exception('Expected value of ' . __CLASS__ . ' must be a class instance or class name');
 		}
 	}
 }

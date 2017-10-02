@@ -2,6 +2,7 @@
 
 namespace mageekguy\atoum\phpunit\constraints;
 
+use PHPUnit;
 use
 	mageekguy\atoum\asserters,
 	mageekguy\atoum\exceptions\logic,
@@ -28,7 +29,7 @@ class isNotInstanceOf extends constraint
 		}
 		catch (logic $exception)
 		{
-			throw new \PHPUnit_Framework_Exception($exception->getMessage());
+			throw new PHPUnit\Framework\Exception($exception->getMessage());
 		}
 	}
 }

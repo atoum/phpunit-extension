@@ -7,7 +7,7 @@ use
 	mageekguy\atoum\phpunit\constraints\nan as testedClass
 ;
 
-class nan extends \PHPUnit_Framework_TestCase
+class nan extends \PHPUnit\Framework\TestCase
 {
 	public function testClass()
 	{
@@ -27,7 +27,7 @@ class nan extends \PHPUnit_Framework_TestCase
 
 			$this->fail();
 		}
-		catch (\PHPUnit_Framework_ExpectationFailedException $exception)
+		catch (\PHPUnit\Framework\ExpectationFailedException $exception)
 		{
 			$analyzer = new atoum\tools\variable\analyzer();
 			$this->assertEquals($analyzer->getTypeOf($actual) . ' is not NaN', $exception->getMessage());
