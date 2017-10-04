@@ -343,7 +343,6 @@ abstract class test extends atoum\test
             // Based on the comment in `self::getTestedClassName`, it is
             // required to re-adjust the mock engines for constants and
             // functions.
-            $out             = parent::beforeTestMethod($testMethod);
             $testedClassName = self::getTestedClassNameFromTestClass(
                 $this->getClass(),
                 $this->getTestNamespace()
@@ -356,8 +355,6 @@ abstract class test extends atoum\test
 
             $this->getPhpFunctionMocker()->setDefaultNamespace($testedNamespace);
             $this->getPhpConstantMocker()->setDefaultNamespace($testedNamespace);
-
-            return $out;
         }
     }
 }
