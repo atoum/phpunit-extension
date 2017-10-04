@@ -42,20 +42,24 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'a
 use mageekguy\atoum\phpunit;
 
 $extension = new phpunit\extension($script);
-
 $extension->addToRunner($runner);
 ```
 
 ## Use it
 
-You must change the parent class of your tests. For example, instead of `PHPUnit\Framework\TestCase`, extend `mageekguy\atoum\phpunit`.
+By default, everything should work, simply run `atoum` as usual and
+your test suites will execute.
+
+If you want to switch a test suite from PHPUnit to atoum, and get all
+the features from atoum, replace the parent class of your test suites
+from `PHPUnit\Framework\TestCase` to `mageekguy\atoum\phpunit`:
 
 ```diff
 -class EnumTest extends \PHPUnit\Framework\TestCase
 +class EnumTest extends \mageekguy\atoum\phpunit
 ```
 
-And from now, use atoum as usual. Enjoy!
+Enjoy!
 
 ## Support
 
