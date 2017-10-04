@@ -8,6 +8,7 @@ use mageekguy\atoum\annotations;
 use mageekguy\atoum\asserter;
 use mageekguy\atoum\test\assertion;
 use mageekguy\atoum\tools\variable\analyzer;
+use PHPUnit;
 
 abstract class test extends atoum\test
 {
@@ -237,9 +238,33 @@ abstract class test extends atoum\test
 
     public function getTestedClassName()
     {
+        // atoum creates a default relation between a test suite and a class,
+        // they are correlated. PHPUnit doesn't do that. If a test suite extends
+        // `PHPUnit\Framework\TestCase`, then it is assumed that this relation
+        // must be canceled, if a test suite extends `atoum\phpunit\test`,
+        // then the relation is kept. The former is a child of the latter, so
+        // it is easy to implement.
+        //
+        // The constant and function mock engines, and the code coverage
+        // scores will not work.
+        if ($this instanceof PHPUnit\Framework\TestCase) {
+            return 'StdClass';
+        }
+
         $testedClassName = parent::getTestedClassName();
 
         return preg_replace('/test$/i', '', $testedClassName);
+    }
+
+    public function getTestedClassNamespace()
+    {
+        // Please, refer to the comment of `self::getTestedClassName` to
+        // understand this block.
+        if ($this instanceof PHPUnit\Framework\TestCase) {
+            return '\\';
+        }
+
+        return parent::getTestedClassNamespace();
     }
 
     public function markTestSkipped($message = null)
@@ -314,6 +339,25 @@ abstract class test extends atoum\test
     {
         if (isset($this->unsupportedMethods[$testMethod])) {
             $this->markTestSkipped($this->unsupportedMethods[$testMethod]);
+        } else {
+            // Based on the comment in `self::getTestedClassName`, it is
+            // required to re-adjust the mock engines for constants and
+            // functions.
+            $out             = parent::beforeTestMethod($testMethod);
+            $testedClassName = self::getTestedClassNameFromTestClass(
+                $this->getClass(),
+                $this->getTestNamespace()
+            );
+            $testedNamespace = substr(
+                $testedClassName,
+                0,
+                strrpos($testedClassName, '\\')
+            );
+
+            $this->getPhpFunctionMocker()->setDefaultNamespace($testedNamespace);
+            $this->getPhpConstantMocker()->setDefaultNamespace($testedNamespace);
+
+            return $out;
         }
     }
 }
