@@ -379,11 +379,11 @@ abstract class test extends atoum\test
     {
     }
 
-    public function setUp()
+    protected function setUp()
     {
     }
 
-    public function tearDown()
+    protected function tearDown()
     {
     }
 
