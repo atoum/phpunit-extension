@@ -340,7 +340,7 @@ abstract class test extends atoum\test
      */
     protected function callSetUp()
     {
-        $this->setUpBeforeClass();
+        static::setUpBeforeClass();
     }
 
     /**
@@ -349,7 +349,7 @@ abstract class test extends atoum\test
      */
     protected function callTearDown()
     {
-        $this->tearDownAfterClass();
+        static::tearDownAfterClass();
     }
 
     /**
@@ -371,11 +371,11 @@ abstract class test extends atoum\test
         $this->tearDown();
     }
 
-    public function setUpBeforeClass()
+    public static function setUpBeforeClass()
     {
     }
 
-    public function tearDownAfterClass()
+    public static function tearDownAfterClass()
     {
     }
 
