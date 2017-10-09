@@ -340,9 +340,7 @@ abstract class test extends atoum\test
      */
     protected function callSetUp()
     {
-        if (method_exists($this, 'setUpBeforeClass')) {
-            $this->setUpBeforeClass();
-        }
+        $this->setUpBeforeClass();
     }
 
     /**
@@ -351,9 +349,7 @@ abstract class test extends atoum\test
      */
     protected function callTearDown()
     {
-        if (method_exists($this, 'tearDownAfterClass')) {
-            $this->tearDownAfterClass();
-        }
+        $this->tearDownAfterClass();
     }
 
     /**
@@ -362,11 +358,8 @@ abstract class test extends atoum\test
      */
     protected function callBeforeTestMethod($testMethod)
     {
-        $this->beforeTestMethod();
-
-        if (method_exists($this, 'setUp')) {
-            $this->setUp();
-        }
+        $this->beforeTestMethod($testMethod);
+        $this->setUp();
     }
 
     /**
@@ -375,9 +368,23 @@ abstract class test extends atoum\test
      */
     protected function callAfterTestMethod($testMethod)
     {
-        if (method_exists($this, 'tearDown')) {
-            $this->tearDown();
-        }
+        $this->tearDown();
+    }
+
+    public function setUpBeforeClass()
+    {
+    }
+
+    public function tearDownAfterClass()
+    {
+    }
+
+    public function setUp()
+    {
+    }
+
+    public function tearDown()
+    {
     }
 
     public function beforeTestMethod($testMethod)
