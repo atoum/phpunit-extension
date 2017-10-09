@@ -23,8 +23,7 @@ abstract class test extends atoum\test
         parent::__construct($adapter, $annotationExtractor, $asserterGenerator, $assertionManager, $reflectionClassFactory, $phpExtensionFactory, $analyzer);
 
         $this
-            ->setDefaultEngine(static::defaultEngine)
-        ;
+            ->setDefaultEngine(static::defaultEngine);
     }
 
     public function setAsserterGenerator(atoum\test\asserter\generator $generator = null)
@@ -333,6 +332,52 @@ abstract class test extends atoum\test
         }
 
         return $this;
+    }
+
+    /**
+     * The `setUp` method in atoum maps to the `setUpBeforeClass` method in
+     * PHPUnit.
+     */
+    protected function callSetUp()
+    {
+        if (method_exists($this, 'setUpBeforeClass')) {
+            $this->setUpBeforeClass();
+        }
+    }
+
+    /**
+     * The `tearDown` method in atoum maps to the `tearDownAfterClass` method
+     * in PHPUnit.
+     */
+    protected function callTearDown()
+    {
+        if (method_exists($this, 'tearDownAfterClass')) {
+            $this->tearDownAfterClass();
+        }
+    }
+
+    /**
+     * The `beforeTestMethod` method in atoum maps to the `setUp` method in
+     * PHPUnit.
+     */
+    protected function callBeforeTestMethod($testMethod)
+    {
+        $this->beforeTestMethod();
+
+        if (method_exists($this, 'setUp')) {
+            $this->setUp();
+        }
+    }
+
+    /**
+     * The `afterTestMethod` method in atoum maps to the `tearDown` method in
+     * PHPUnit.
+     */
+    protected function callAfterTestMethod($testMethod)
+    {
+        if (method_exists($this, 'tearDown')) {
+            $this->tearDown();
+        }
     }
 
     public function beforeTestMethod($testMethod)
