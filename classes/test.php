@@ -14,7 +14,7 @@ abstract class test extends atoum\test
 {
     const defaultMethodPrefix = '/^(test|should)|.*_should_/';
     const defaultEngine = 'inline';
-    const defaultNamespace = '#(?:^|\\\)tests?\\\.*?units?.*?\\\#i';
+    const defaultNamespace = '#(?:^|\\\)tests?\\\#i';
 
     private $unsupportedMethods;
 
