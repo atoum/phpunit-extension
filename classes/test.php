@@ -16,6 +16,9 @@ abstract class test extends atoum\test
     const defaultEngine = 'inline';
     const defaultNamespace = '#(?:^|\\\)tests?\\\#i';
 
+    private $testedClassNames = [];
+    private $defaultTestedClassName;
+    private $breakRelationBetweenTestSuiteAndSUT = true;
     private $unsupportedMethods;
 
     public function __construct(adapter $adapter = null, annotations\extractor $annotationExtractor = null, asserter\generator $asserterGenerator = null, assertion\manager $assertionManager = null, \closure $reflectionClassFactory = null, \closure $phpExtensionFactory = null, analyzer $analyzer = null)
@@ -31,8 +34,7 @@ abstract class test extends atoum\test
         $generator = $generator ?: new atoum\test\asserter\generator($this);
 
         $generator
-            ->addNamespace(__NAMESPACE__ . '\\asserters')
-        ;
+            ->addNamespace(__NAMESPACE__ . '\\asserters');
 
         return parent::setAsserterGenerator($generator);
     }
@@ -235,6 +237,24 @@ abstract class test extends atoum\test
         return $this;
     }
 
+    /**
+     * Override the parent definition to allow to re-assign a new value for
+     * the tested class name.
+     */
+    public function setTestedClassName($className)
+    {
+        static $reflectionProperty = null;
+
+        if (null === $reflectionProperty) {
+            $reflectionProperty = (new \ReflectionClass(parent::class))->getProperty('testedClassName');
+            $reflectionProperty->setAccessible(true);
+        }
+
+        $reflectionProperty->setValue($this, null);
+
+        return parent::setTestedClassName($className);
+    }
+
     public function getTestedClassName()
     {
         // atoum creates a default relation between a test suite and a class,
@@ -246,13 +266,14 @@ abstract class test extends atoum\test
         //
         // The constant and function mock engines, and the code coverage
         // scores will not work.
-        if ($this instanceof PHPUnit\Framework\TestCase) {
-            return 'StdClass';
+        if (true === $this->breakRelationBetweenTestSuiteAndSUT &&
+            $this instanceof PHPUnit\Framework\TestCase) {
+            return $this->defaultTestedClassName ?? 'StdClass';
         }
 
         $testedClassName = parent::getTestedClassName();
 
-        return preg_replace('/test$/i', '', $testedClassName);
+        return preg_replace('/(?<!\\\)test$/i', '', $testedClassName);
     }
 
     public function getTestedClassNamespace()
@@ -275,36 +296,61 @@ abstract class test extends atoum\test
     {
         parent::setMethodAnnotations($extractor, $methodName);
 
-        $test = $this;
-
-        $tagHandler = function ($value) use ($test, & $methodName) {
-            $test->setMethodTags($methodName, annotations\extractor::toArray($value));
+        $tagHandler = function ($value) use (& $methodName) {
+            $this->setMethodTags($methodName, annotations\extractor::toArray($value));
         };
 
         $extractor
             ->setHandler('author', $tagHandler)
             ->setHandler(
                 'expectedException',
-                function ($value) use ($test, & $methodName) {
+                function ($value) use (& $methodName) {
                     if ($value) {
-                        $test->addUnsupportedMethod($methodName, '@expectedException is not supported.');
+                        $this->addUnsupportedMethod($methodName, '@expectedException is not supported.');
                     }
                 }
             )
             ->setHandler('group', $tagHandler)
-            ->setHandler('large', function () use ($tagHandler) {
-                $tagHandler('large');
-            })
-            ->setHandler('medium', function () use ($tagHandler) {
-                $tagHandler('medium');
-            })
-            ->setHandler('runInSeparateProcess', function () use ($test, & $methodName) {
-                $test->setMethodEngine($methodName, 'isolate');
-            })
-            ->setHandler('small', function () use ($tagHandler) {
-                $tagHandler('small');
-            })
-        ;
+            ->setHandler(
+                'large',
+                function () use ($tagHandler) {
+                    $tagHandler('large');
+                }
+            )
+            ->setHandler(
+                'medium',
+                function () use ($tagHandler) {
+                    $tagHandler('medium');
+                }
+            )
+            ->setHandler(
+                'runInSeparateProcess',
+                function () use (& $methodName) {
+                    $this->setMethodEngine($methodName, 'isolate');
+                }
+            )
+            ->setHandler(
+                'small',
+                function () use ($tagHandler) {
+                    $tagHandler('small');
+                }
+            )
+            ->setHandler(
+                'covers',
+                function ($value) use (& $methodName) {
+                    // We only care about the classname to compute the real
+                    // code coverage score, nothing else.
+                    if (0 !== preg_match('/^([^:]+)(::)?/', $value, $matches)) {
+                        $this->testedClassNames[$methodName] = $matches[1];
+                    }
+                }
+            )
+            ->setHandler(
+                'coversNothing',
+                function () use (& $methodName) {
+                    $this->testedClassNames[$methodName] = 'StdClass';
+                }
+            );
 
         return $this;
     }
@@ -313,13 +359,20 @@ abstract class test extends atoum\test
     {
         parent::setClassAnnotations($extractor);
 
-        $test = $this;
-
         $extractor
-            ->setHandler('runTestsInSeparateProcesses', function () use ($test, & $methodName) {
-                $test->setMethodEngine($methodName, 'isolate');
-            })
-        ;
+            ->setHandler(
+                'runTestsInSeparateProcesses',
+                function () use (& $methodName) {
+                    $this->setMethodEngine($methodName, 'isolate');
+                }
+            )
+            ->setHandler(
+                'coversDefaultClass',
+                function ($value) {
+                    $this->defaultTestedClassName = $value;
+                    $this->setTestedClassName($value);
+                }
+            );
 
         return $this;
     }
@@ -368,6 +421,7 @@ abstract class test extends atoum\test
      */
     protected function callAfterTestMethod($testMethod)
     {
+        $this->afterTestMethod($testMethod);
         $this->tearDown();
     }
 
@@ -392,6 +446,11 @@ abstract class test extends atoum\test
         if (isset($this->unsupportedMethods[$testMethod])) {
             $this->markTestSkipped($this->unsupportedMethods[$testMethod]);
         } else {
+            if (isset($this->testedClassNames[$testMethod])) {
+                $this->setTestedClassName($this->testedClassNames[$testMethod]);
+                $this->breakRelationBetweenTestSuiteAndSUT = false;
+            }
+
             // Based on the comment in `self::getTestedClassName`, it is
             // required to re-adjust the mock engines for constants and
             // functions.
@@ -408,5 +467,10 @@ abstract class test extends atoum\test
             $this->getPhpFunctionMocker()->setDefaultNamespace($testedNamespace);
             $this->getPhpConstantMocker()->setDefaultNamespace($testedNamespace);
         }
+    }
+
+    public function afterTestMethod($testMethod)
+    {
+        $this->breakRelationBetweenTestSuiteAndSUT = true;
     }
 }
