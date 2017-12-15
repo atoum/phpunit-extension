@@ -199,7 +199,7 @@ Enjoy!
 | `@testdox`                        | ❌         |                                                   |
 | `@ticket`                         | ❌         |                                                   |
 | `@uses`                           | ❌         |                                                   |
-| *Total*                           | 27.58%    |                                                   |
+| *Total*                           | 37.93%    |                                                   |
 
 ## Links
 
