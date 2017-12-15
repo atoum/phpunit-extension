@@ -178,9 +178,9 @@ Enjoy!
 | `@before`                         | ❌         |                                                   |
 | `@beforeClass`                    | ❌         |                                                   |
 | `@codeCoverageIgnore*`            | ❌         |                                                   |
-| `@covers`                         | ❌         |                                                   |
-| `@coversDefaultClass`             | ❌         |                                                   |
-| `@coversNothing`                  | ❌         |                                                   |
+| `@covers`                         | ✅         | Does only consider the class name.                |
+| `@coversDefaultClass`             | ✅         |                                                   |
+| `@coversNothing`                  | ✅         |                                                   |
 | `@dataProvider`                   | ✅         |                                                   |
 | `@depends`                        | ❌         |                                                   |
 | `@expectedException`              | ❌         |                                                   |
