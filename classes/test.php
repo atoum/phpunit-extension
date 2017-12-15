@@ -268,7 +268,10 @@ abstract class test extends atoum\test
         // scores will not work.
         if (true === $this->breakRelationBetweenTestSuiteAndSUT &&
             $this instanceof PHPUnit\Framework\TestCase) {
-            return $this->defaultTestedClassName ?? 'StdClass';
+            return
+                null !== $this->defaultTestedClassName
+                    ? $this->defaultTestedClassName
+                    : 'StdClass';
         }
 
         $testedClassName = parent::getTestedClassName();
