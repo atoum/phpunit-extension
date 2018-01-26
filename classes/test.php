@@ -199,6 +199,22 @@ abstract class test extends atoum\test
                 }
             )
             ->setHandler(
+                'assertObjectHasAttribute',
+                function ($attribute, $object, $failMessage = null) use ($test) {
+                    $test->assertThat($object, new atoum\phpunit\constraints\objectHasAttribute($attribute, $failMessage));
+
+                    return $test;
+                }
+            )
+            ->setHandler(
+                'assertObjectNotHasAttribute',
+                function ($attribute, $object, $failMessage = null) use ($test) {
+                    $test->assertThat($object, new atoum\phpunit\constraints\objectNotHasAttribute($attribute, $failMessage));
+
+                    return $test;
+                }
+            )
+            ->setHandler(
                 'assertSame',
                 function ($expected, $actual, $failMessage = null) use ($test) {
                     $test->assertThat($actual, new atoum\phpunit\constraints\same($expected, $failMessage));
