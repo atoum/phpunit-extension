@@ -122,8 +122,8 @@ Enjoy!
 | `assertNan(mixed $variable[, string $message = ''])`                                                               | ✅         |
 | `assertNull(mixed $variable[, string $message = ''])`                                                              | ✅         |
 | `assertNotNull(mixed $variable[, string $message = ''])`                                                           | ✅         |
-| `assertObjectHasAttribute`                                                                                         | ❌         |
-| `assertObjectNotHasAttribute`                                                                                      | ❌         |
+| `assertObjectHasAttribute(string $attribute[, string $message = ''])`                                              | ✅         |
+| `assertObjectNotHasAttribute(string $attribute[, string $message = ''])`                                           | ✅         |
 | `assertRegExp`                                                                                                     | ❌         |
 | `assertNotRegExp`                                                                                                  | ❌         |
 | `assertStringMatchesFormat`                                                                                        | ❌         |
@@ -147,7 +147,7 @@ Enjoy!
 | `assertXmlStringNotEqualsXmlFile`                                                                                  | ❌         |
 | `assertXmlStringEqualsXmlString`                                                                                   | ❌         |
 | `assertXmlStringNotEqualsXmlString`                                                                                | ❌         |
-| *Total*                                                                                                            | 36.62%    |
+| *Total*                                                                                                            | 39.44%    |
 
 ### Classes
 
