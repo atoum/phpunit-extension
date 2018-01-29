@@ -90,9 +90,9 @@ Enjoy!
 | `assertContainsOnlyInstancesOf(string $classname, iterable $haystack[, string $message = ''])`                     | ✅         |
 | `assertNotContainsOnly`                                                                                            | ❌         |
 | `assertCount($expectedCount, $haystack[, string $message = ''])`                                                   | ✅         |
-| `assertNotCount`                                                                                                   | ❌         |
+| `assertNotCount($expectedCount, $haystack[, string $message = ''])`                                                | ✅         |
 | `assertEmpty(mixed $actual[, string $message = ''])`                                                               | ✅         |
-| `assertNotEmpty`                                                                                                   | ❌         |
+| `assertNotEmpty(mixed $actual[, string $message = ''])`                                                            | ✅         |
 | `assertEqualXMLStructure`                                                                                          | ❌         |
 | `assertEquals(mixed $expected, mixed $actual[, string $message = ''])`                                             | ✅         |
 | `assertEquals(float $expected, float $actual[, string $message = '', float $delta = 0])`                           | ✅         |
@@ -147,7 +147,7 @@ Enjoy!
 | `assertXmlStringNotEqualsXmlFile`                                                                                  | ❌         |
 | `assertXmlStringEqualsXmlString`                                                                                   | ❌         |
 | `assertXmlStringNotEqualsXmlString`                                                                                | ❌         |
-| *Total*                                                                                                            | 39.44%    |
+| *Total*                                                                                                            | 42.25%    |
 
 ### Classes
 
