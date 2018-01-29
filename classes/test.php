@@ -103,6 +103,14 @@ abstract class test extends atoum\test
                 }
             )
             ->setHandler(
+                'assertNotEmpty',
+                function ($actual, $failMessage = null) use ($test) {
+                    $test->assertThat($actual, new atoum\phpunit\constraints\isNotEmpty($failMessage, $test->getAnalyzer()));
+
+                    return $test;
+                }
+            )
+            ->setHandler(
                 'assertEquals',
                 function ($expected, $actual, $failMessage = null, $delta = null, $maxDepth = null, $canonicalize = null, $ignoreCase = null) use ($test) {
                     $test->assertThat($actual, new atoum\phpunit\constraints\equals($expected, $failMessage, $delta, $maxDepth, $canonicalize, $ignoreCase, $test->getAnalyzer()));
