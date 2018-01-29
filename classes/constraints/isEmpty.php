@@ -3,27 +3,41 @@
 namespace mageekguy\atoum\phpunit\constraints;
 
 use mageekguy\atoum\asserters;
-use mageekguy\atoum\exceptions;
+use mageekguy\atoum\phpunit\constraint;
 use mageekguy\atoum\tools\variable\analyzer;
 
-class isEmpty extends count
+class isEmpty extends constraint
 {
+    private $analyzer;
+
     public function __construct($description = null, analyzer $analyzer = null)
     {
-        parent::__construct(0, $description, $analyzer);
+        $this->description = $description;
+        $this->analyzer = $analyzer ?: new analyzer();
     }
 
     protected function matches($actual)
     {
-        if ($this->analyzer->isString($actual)) {
-            $asserter = new asserters\phpString(null, $this->analyzer);
-            $asserter->setWith($actual)->isEmpty($this->description);
+        if ($actual instanceof \countable) {
+            $asserter = new asserters\sizeOf(null, $this->analyzer);
+            $asserter->setWith($actual)->isEqualTo(0, $this->description);
         } else {
-            try {
-                parent::matches($actual);
-            } catch (exceptions\runtime $exception) {
-                throw new exceptions\runtime('Actual value of ' . __CLASS__ . ' must be a string, an array, a countable object, a traversable object');
-            }
+            $asserter = new emptyAsserter(null, $this->analyzer);
+            $asserter->setWith($actual)->isEmpty($this->description);
         }
+    }
+}
+
+class emptyAsserter extends asserters\variable
+{
+    public function isEmpty($failMessage = null)
+    {
+        if (empty($this->valueIsSet()->value)) {
+            $this->pass();
+        } else {
+            $this->fail($failMessage ?: $this->_('%s is not empty', $this));
+        }
+
+        return $this;
     }
 }

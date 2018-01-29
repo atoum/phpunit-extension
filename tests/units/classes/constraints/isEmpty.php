@@ -9,7 +9,7 @@ class isEmpty extends \PHPUnit\Framework\TestCase
 {
     public function testClass()
     {
-        $this->assertInstanceOf('mageekguy\atoum\phpunit\constraints\count', new testedClass());
+        $this->assertInstanceOf('mageekguy\atoum\phpunit\constraint', new testedClass());
     }
 
     public function testAssertStringIsEmpty()
@@ -22,9 +22,7 @@ class isEmpty extends \PHPUnit\Framework\TestCase
 
             $this->fail();
         } catch (\PHPUnit\Framework\ExpectationFailedException $exception) {
-            $analyzer = new atoum\tools\variable\analyzer();
-            $diff = new atoum\tools\diff($analyzer->dump(''), $analyzer->dump('foo'));
-            $this->assertEquals('string is not empty' . PHP_EOL . $diff, $exception->getMessage());
+            $this->assertEquals('string(3) \'foo\' is not empty', $exception->getMessage());
         }
     }
 
@@ -38,7 +36,7 @@ class isEmpty extends \PHPUnit\Framework\TestCase
 
             $this->fail();
         } catch (\PHPUnit\Framework\ExpectationFailedException $exception) {
-            $this->assertEquals('array(2) has size 2, expected size 0', $exception->getMessage());
+            $this->assertEquals('array(2) is not empty', $exception->getMessage());
         }
     }
 }
