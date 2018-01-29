@@ -87,6 +87,14 @@ abstract class test extends atoum\test
                 }
             )
             ->setHandler(
+                'assertNotCount',
+                function ($expected, $actual, $failMessage = null) use ($test) {
+                    $test->assertThat($actual, new atoum\phpunit\constraints\notCount($expected, $failMessage, $test->getAnalyzer()));
+
+                    return $test;
+                }
+            )
+            ->setHandler(
                 'assertEmpty',
                 function ($actual, $failMessage = null) use ($test) {
                     $test->assertThat($actual, new atoum\phpunit\constraints\isEmpty($failMessage, $test->getAnalyzer()));
