@@ -2,6 +2,7 @@
 
 namespace mageekguy\atoum\phpunit\constraints;
 
+use mageekguy\atoum\asserters;
 use mageekguy\atoum\exceptions;
 use mageekguy\atoum\tools\variable\analyzer;
 
@@ -14,10 +15,15 @@ class isEmpty extends count
 
     protected function matches($actual)
     {
-        try {
-            parent::matches($actual);
-        } catch (exceptions\runtime $exception) {
-            throw new exceptions\runtime('Actual value of ' . __CLASS__ . ' must be a string, an array, a countable object, a traversable object');
+        if ($this->analyzer->isString($actual)) {
+            $asserter = new asserters\phpString(null, $this->analyzer);
+            $asserter->setWith($actual)->isEmpty($this->description);
+        } else {
+            try {
+                parent::matches($actual);
+            } catch (exceptions\runtime $exception) {
+                throw new exceptions\runtime('Actual value of ' . __CLASS__ . ' must be a string, an array, a countable object, a traversable object');
+            }
         }
     }
 }
