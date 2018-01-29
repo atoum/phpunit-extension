@@ -9,8 +9,8 @@ use PHPUnit;
 
 class count extends constraint
 {
-    private $expected;
-    private $analyzer;
+    protected $expected;
+    protected $analyzer;
 
     public function __construct($expected, $description = null, analyzer $analyzer = null)
     {

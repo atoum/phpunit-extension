@@ -9,16 +9,6 @@ use PHPUnit;
 
 class notCount extends count
 {
-    private $expected;
-    private $analyzer;
-
-    public function __construct($expected, $description = null, analyzer $analyzer = null)
-    {
-        $this->analyzer = $analyzer ?: new analyzer();
-        $this->expected = $expected;
-        $this->description = $description;
-    }
-
     protected function matches($actual)
     {
         if ($this->analyzer->isInteger($this->expected) === false) {
