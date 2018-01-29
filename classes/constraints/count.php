@@ -28,17 +28,17 @@ class count extends constraint
         switch (true) {
             case $this->analyzer->isArray($actual):
                 $asserter = new asserters\phpArray(null, $this->analyzer);
-                $asserter->setWith($actual)->hasSize($this->expected);
+                $asserter->setWith($actual)->hasSize($this->expected, $this->description);
                 break;
 
             case $actual instanceof \countable:
                 $asserter = new asserters\sizeOf(null, $this->analyzer);
-                $asserter->setWith($actual)->isEqualTo($this->expected);
+                $asserter->setWith($actual)->isEqualTo($this->expected, $this->description);
                 break;
 
             case $actual instanceof \iteratorAggregate:
                 $asserter = new asserters\integer(null, $this->analyzer);
-                $asserter->setWith(iterator_count($actual->getIterator()))->isEqualTo($this->expected);
+                $asserter->setWith(iterator_count($actual->getIterator()))->isEqualTo($this->expected, $this->description);
                 break;
 
             case $actual instanceof \traversable:
