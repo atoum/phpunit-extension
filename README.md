@@ -25,7 +25,7 @@ Install extension using [Composer](https://getcomposer.org):
 {
     "require-dev": {
         "atoum/atoum": "dev-virtual-hooks",
-        "atoum/phpunit-extension": "~0.4.1"
+        "atoum/phpunit-extension": "~0.6"
     }
 }
 ```
