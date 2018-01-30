@@ -2,11 +2,11 @@
 
 namespace mageekguy\atoum\phpunit\constraints;
 
+use PHPUnit;
 use mageekguy\atoum\asserter\exception;
-use mageekguy\atoum\asserters;
+use mageekguy\atoum\phpunit\asserters;
 use mageekguy\atoum\phpunit\constraint;
 use mageekguy\atoum\tools\variable\analyzer;
-use PHPUnit;
 
 class objectHasAttribute extends constraint
 {
@@ -19,7 +19,7 @@ class objectHasAttribute extends constraint
         $this->analyzer = $analyzer ?: new analyzer();
         $this->attribute = $attribute;
         $this->description = $description;
-        $this->asserter = new objectHasAttributeAsserter(null, $this->analyzer);
+        $this->asserter = new asserters\phpObject(null, $this->analyzer);
     }
 
     protected function matches($actual)
@@ -36,17 +36,3 @@ class objectHasAttribute extends constraint
         $this->asserter->hasAttribute($this->attribute, $this->description);
     }
 }
-
-class objectHasAttributeAsserter extends asserters\phpObject
-{
-    public function hasAttribute($attribute, $failMessage = null)
-    {
-        if (property_exists($this->valueIsSet()->value, $attribute)) {
-            $this->pass();
-        } else {
-            $this->fail($failMessage ?: $this->_('%s has no attribute `%s`', $this, $attribute));
-        }
-
-        return $this;
-    }
-};

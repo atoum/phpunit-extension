@@ -2,7 +2,8 @@
 
 namespace mageekguy\atoum\phpunit\constraints;
 
-use mageekguy\atoum\asserters;
+use mageekguy\atoum\asserters as atoumAsserters;
+use mageekguy\atoum\phpunit\asserters as atoumPHPUnitAsserters;
 use mageekguy\atoum\phpunit\constraint;
 use mageekguy\atoum\tools\variable\analyzer;
 
@@ -19,25 +20,11 @@ class isNotEmpty extends constraint
     protected function matches($actual)
     {
         if ($actual instanceof \countable) {
-            $asserter = new asserters\sizeOf(null, $this->analyzer);
+            $asserter = new atoumAsserters\sizeOf(null, $this->analyzer);
             $asserter->setWith($actual)->isNotEqualTo(0, $this->description);
         } else {
-            $asserter = new notEmptyAsserter(null, $this->analyzer);
+            $asserter = new atoumPHPUnitAsserters\variable(null, $this->analyzer);
             $asserter->setWith($actual)->isNotEmpty($this->description);
         }
-    }
-}
-
-class notEmptyAsserter extends asserters\variable
-{
-    public function isNotEmpty($failMessage = null)
-    {
-        if (!empty($this->valueIsSet()->value)) {
-            $this->pass();
-        } else {
-            $this->fail($failMessage ?: $this->_('%s is empty', $this));
-        }
-
-        return $this;
     }
 }
